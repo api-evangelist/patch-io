@@ -1,0 +1,132 @@
+aid: patch-io
+name: Patch
+description: |
+  Patch is an API-first climate platform that helps companies procure carbon
+  credits and removals, run climate strategy programs, and embed climate action
+  into their own products. The core Patch API exposes carbon projects,
+  estimates, and orders so developers can build offset purchase flows directly
+  into checkouts, accounting systems, and ESG products. Patch also runs Radius
+  (network-based impact acceleration), Offtake (climate tech funding and
+  long-term credit access), and an RFP tool for carbon credit procurement.
+  Official SDKs are available for Node.js, Python, Ruby, and other languages, and
+  the API is documented with an OpenAPI 3 spec and Swagger UI.
+type: Index
+position: Provider
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Climate
+  - Carbon Credits
+  - Carbon Removal
+  - Offsets
+  - API-First
+  - Embedded Climate
+  - Marketplace
+  - Sustainability
+  - OpenAPI
+  - SDKs
+url: https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.20'
+apis:
+  - aid: patch-io:carbon-api
+    name: Patch Carbon API
+    description: |
+      The Patch API lets developers browse carbon projects, generate emissions
+      estimates, and place orders for verified carbon credits and removals. It
+      is delivered as a REST/JSON API documented with OpenAPI 3, with official
+      client libraries in multiple languages. The API is used by climate
+      products, accounting platforms, and embedded climate flows to make carbon
+      action programmable.
+    humanURL: https://docs.patch.io/
+    baseURL: https://api.patch.io/
+    tags:
+      - Carbon API
+      - Projects
+      - Orders
+      - Estimates
+      - Carbon Credits
+      - Removal
+      - OpenAPI
+      - REST
+    properties:
+      - type: Documentation
+        url: https://docs.patch.io/
+      - type: SwaggerUI
+        url: https://api.patch.io/api-docs/index.html
+      - type: HowItWorks
+        url: https://www.patch.io/how-it-works
+      - type: ClimateNeutral
+        url: https://www.patch.io/climate-neutral
+      - type: SDKNode
+        url: https://github.com/patch-technology/patch-node
+      - type: GitHubOrganization
+        url: https://github.com/patch-technology
+      - type: UnitPartnership
+        url: https://www.unit.co/docs/partnerships/patch/
+    features:
+      - name: Projects API
+        description: Browse and filter verified carbon projects across removal and avoidance categories.
+      - name: Estimates API
+        description: Generate emissions estimates for shipping, flights, vehicles, ecommerce orders, and custom mass-based activity.
+      - name: Orders API
+        description: Place, retrieve, and cancel carbon credit and removal orders programmatically.
+      - name: Technologies
+        description: Filter projects and orders by technology type (DAC, biochar, mineralization, REDD+, ARR, etc.).
+      - name: Beneficiaries
+        description: Tag orders with end beneficiaries for transparent attribution.
+      - name: Offtake Agreements
+        description: Access long-term carbon removal supply through Patch Offtake.
+      - name: RFP Tool
+        description: Run structured procurement processes for carbon credit purchases.
+      - name: OpenAPI 3 Specification
+        description: Machine-readable spec available via Swagger UI for code generation and tooling.
+    useCases:
+      - name: Checkout-Embedded Offsets
+        description: Add carbon offsets at checkout in ecommerce, travel, and logistics products.
+      - name: ESG Platform Integration
+        description: Plug Patch into ESG and carbon accounting platforms as the procurement layer.
+      - name: Corporate Climate Programs
+        description: Procure verified credits and removals against corporate net-zero targets.
+      - name: Climate Tech Funding
+        description: Use Offtake to secure long-term offtake commitments for novel carbon removal projects.
+      - name: Banking and Fintech
+        description: Offer customers carbon offsets alongside payments and banking products.
+    integrations:
+      - name: Stripe
+      - name: Shopify
+      - name: Unit
+      - name: Persefoni
+      - name: Watershed
+      - name: NetSuite
+      - name: HubSpot
+      - name: Zapier
+      - name: Salesforce
+    authentication:
+      - type: APIKey
+        description: Bearer token API keys provisioned via the Patch dashboard, with separate sandbox and live keys.
+common:
+  - type: Website
+    url: https://www.patch.io/
+  - type: Platform
+    url: https://www.patch.io/platform
+  - type: HowItWorks
+    url: https://www.patch.io/how-it-works
+  - type: Documentation
+    url: https://docs.patch.io/
+  - type: SwaggerUI
+    url: https://api.patch.io/api-docs/index.html
+  - type: GitHub
+    url: https://github.com/patch-technology
+  - type: Blog
+    url: https://www.patch.io/blog
+  - type: ClimateNeutral
+    url: https://www.patch.io/climate-neutral
+  - type: Careers
+    url: https://www.patch.io/careers
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/patch-technology/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
