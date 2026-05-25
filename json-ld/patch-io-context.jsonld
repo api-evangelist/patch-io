@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "patch": "https://www.patch.io/ns#",
+    "Project": "patch:Project",
+    "Order": "patch:Order",
+    "OrderLineItem": "patch:OrderLineItem",
+    "TechnologyType": "patch:TechnologyType",
+    "Standard": "patch:Standard",
+    "Sdg": "patch:Sdg",
+    "name": "schema:name",
+    "description": "schema:description",
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "schema:Country"
+    },
+    "latitude": { "@id": "schema:latitude", "@type": "xsd:float" },
+    "longitude": { "@id": "schema:longitude", "@type": "xsd:float" },
+    "url": { "@id": "schema:url", "@type": "@id" },
+    "id": "@id",
+    "price": "schema:price",
+    "currency": "schema:priceCurrency",
+    "amount": "patch:amountGrams",
+    "mechanism": "patch:mechanism",
+    "vintage_year": "patch:vintageYear",
+    "state": "patch:state",
+    "technology_type": { "@id": "patch:technologyType", "@type": "@id" },
+    "standard": { "@id": "patch:standard", "@type": "@id" },
+    "sdgs": { "@id": "patch:sdgs", "@container": "@list" },
+    "line_items": { "@id": "patch:lineItems", "@container": "@list" },
+    "issued_to": { "@id": "patch:issuedTo", "@type": "@id" },
+    "registry_url": { "@id": "patch:registryUrl", "@type": "@id" },
+    "patch_fee": "patch:fee",
+    "metadata": "patch:metadata"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json",
+  "title": "Patch Order",
+  "description": "A carbon credit or removal order placed through the Patch API.",
+  "type": "object",
+  "required": ["id", "state"],
+  "properties": {
+    "id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "production": { "type": "boolean" },
+    "state": {
+      "type": "string",
+      "enum": ["draft", "placed", "processing", "complete", "cancelled"]
+    },
+    "amount": { "type": "integer", "description": "Total mass in grams." },
+    "unit": { "type": "string" },
+    "price": { "type": "integer", "description": "Subtotal in minor currency units." },
+    "patch_fee": { "type": "integer" },
+    "currency": { "type": "string" },
+    "registry_url": { "type": ["string", "null"], "format": "uri" },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "issued_to": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "vintage_year": { "type": ["integer", "null"] },
+          "amount": { "type": "integer" },
+          "unit": { "type": "string" },
+          "price": { "type": "integer" },
+          "currency": { "type": "string" },
+          "project": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json",
+  "title": "Patch Technology Type",
+  "description": "A technology classification for Patch carbon projects (e.g. Direct Air Capture, biochar, mineralization, REDD+).",
+  "type": "object",
+  "required": ["slug", "name"],
+  "properties": {
+    "slug": { "type": "string", "description": "Stable slug identifier for the technology type." },
+    "name": { "type": "string" },
+    "parent_technology_type": {
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    }
+  }
+}

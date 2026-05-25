@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.patch.io/v1/projects?country=US&type=biochar&page=1",
+    "headers": {
+      "Authorization": "Bearer key_test_xxxxxxxxxxxxxxxxxxxxxxxx",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "error": null,
+      "data": [
+        {
+          "id": "pro_test_abc123",
+          "production": false,
+          "name": "Pacific Northwest Biochar Project",
+          "mechanism": "removal",
+          "country": "US",
+          "state": "OR",
+          "technology_type": {
+            "slug": "biochar",
+            "name": "Biochar",
+            "parent_technology_type": { "slug": "carbon_removal", "name": "Carbon Removal" }
+          },
+          "standard": { "type": "Puro.earth", "acronym": "PURO" },
+          "inventory": [
+            {
+              "vintage_year": 2025,
+              "amount_available": 5000000,
+              "price": 18500,
+              "currency": "USD"
+            }
+          ]
+        }
+      ],
+      "meta": { "prev_page": null, "next_page": 2 }
+    }
+  }
+}

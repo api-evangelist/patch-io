@@ -1,0 +1,52 @@
+vocabulary: Patch Carbon Credit Vocabulary
+provider: Patch
+providerId: patch-io
+version: '0.1'
+created: '2026-05-24'
+description: |
+  Domain vocabulary covering the entities and dimensions exposed by the Patch
+  Carbon API. Aligns operational primitives (projects, orders, line items,
+  inventory, vintages) with carbon market vocabulary (mechanism, standard,
+  technology type, registry, SDGs) so this provider can be cross-referenced
+  with other API Evangelist climate profiles.
+concepts:
+- term: Carbon Credit
+  definition: A tradable certificate representing one tonne of CO2-equivalent reduced, avoided, or removed.
+- term: Carbon Removal
+  definition: Technology- or nature-based credits whose underlying activity physically removes CO2 from the atmosphere (DAC, biochar, mineralization, ARR, ocean alkalinity, etc.).
+- term: Avoidance Credit
+  definition: A credit issued for an emissions reduction that would not otherwise have occurred (REDD+, renewable energy, methane capture).
+- term: Vintage
+  definition: The year (or year range) in which the underlying emissions reduction or removal was realized.
+- term: Mechanism
+  definition: One of {removal, avoidance}; the high-level category of climate impact.
+- term: Standard / Registry
+  definition: The carbon program that issues and tracks the credit (Verra VCS, Gold Standard, Puro.earth, ACR, CAR).
+- term: Technology Type
+  definition: The technology pathway producing the credit (DAC, biochar, mineralization, REDD+, ARR, blue carbon, etc.).
+- term: Parent Technology Type
+  definition: The broad family of technology types (e.g. Carbon Removal, Nature-Based, Avoidance).
+- term: Inventory
+  definition: Per-vintage units of mass (in grams) available for purchase at a given price.
+- term: Order
+  definition: A buyer commitment to purchase a quantity of credits from one or more projects.
+- term: Order Line Item
+  definition: A per-project, per-vintage allocation inside an order.
+- term: Offtake Agreement
+  definition: A long-term forward commitment to purchase credits from a (often pre-commercial) removal project.
+- term: Beneficiary (issued_to)
+  definition: The end entity to which retired credits are attributed.
+dimensions:
+  Mechanism: [removal, avoidance]
+  TechnologyTypes: [dac, biochar, mineralization, redd_plus, arr, blue_carbon, ocean_alkalinity, biomass, soil, renewable_energy, methane_capture]
+  Standards: [Verra, Gold Standard, Puro.earth, ACR, CAR]
+  OrderStates: [draft, placed, processing, complete, cancelled]
+  Units: [g, kg, t]
+  Currencies: [USD, EUR, GBP]
+alignment:
+  schemaOrg:
+  - schema:Place (Project)
+  - schema:Offer (Inventory)
+  - schema:Order
+  - schema:Product (carbon credit)
+  jsonLdContext: ../json-ld/patch-io-context.jsonld

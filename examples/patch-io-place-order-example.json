@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "PATCH",
+    "url": "https://api.patch.io/v1/orders/ord_test_xyz789/place",
+    "headers": {
+      "Authorization": "Bearer key_test_xxxxxxxxxxxxxxxxxxxxxxxx",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "error": null,
+      "data": {
+        "id": "ord_test_xyz789",
+        "state": "placed",
+        "amount": 1000000,
+        "unit": "g",
+        "price": 18500,
+        "patch_fee": 925,
+        "currency": "USD",
+        "registry_url": "https://registry.puro.earth/cert/PURO-0001"
+      },
+      "meta": { "patch_version": 2 }
+    }
+  }
+}

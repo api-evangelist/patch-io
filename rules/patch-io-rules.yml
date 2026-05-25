@@ -1,0 +1,80 @@
+extends: spectral:oas
+rules:
+  patch-info-title-required:
+    description: Patch APIs must declare info.title.
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+  patch-info-contact:
+    description: Patch APIs must declare an engineering contact.
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  patch-bearer-auth-required:
+    description: Patch APIs must declare bearer-auth security scheme.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      field: bearerAuth
+      function: truthy
+  patch-server-https:
+    description: All Patch server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  patch-tag-titlecase:
+    description: OpenAPI tags must use Title Case.
+    severity: warn
+    given: $.tags[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: '^([A-Z][a-z0-9]*)( [A-Z][a-z0-9]*)*$'
+  patch-summary-titlecase:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^([A-Z][A-Za-z0-9]*)( [A-Za-z0-9]+)*$'
+  patch-operation-id-camelcase:
+    description: Operation IDs must be camelCase.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+  patch-path-v1-prefix:
+    description: All API paths must be prefixed with /v1/.
+    severity: error
+    given: $.paths
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: '^/v1/'
+  patch-error-response-401:
+    description: Mutating operations must declare a 401 response.
+    severity: warn
+    given: $.paths[*][post,patch,delete].responses
+    then:
+      field: '401'
+      function: truthy
+  patch-snake-case-properties:
+    description: JSON property names should be snake_case (Patch convention).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9_]*$'

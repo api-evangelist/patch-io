@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json",
+  "title": "Patch Project",
+  "description": "A verified carbon project listed on Patch.",
+  "type": "object",
+  "required": ["id", "name", "mechanism"],
+  "properties": {
+    "id": { "type": "string", "description": "Patch project identifier." },
+    "production": { "type": "boolean" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "mechanism": { "type": "string", "enum": ["removal", "avoidance"] },
+    "country": { "type": "string", "description": "ISO 3166-1 alpha-2 country code." },
+    "state": { "type": "string" },
+    "issuance_type": { "type": "string" },
+    "latitude": { "type": "number" },
+    "longitude": { "type": "number" },
+    "project_partner": { "type": "string" },
+    "verifier": { "type": "string" },
+    "tagline": { "type": "string" },
+    "standard": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "acronym": { "type": "string" }
+      }
+    },
+    "technology_type": {
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string" },
+        "name": { "type": "string" },
+        "parent_technology_type": {
+          "type": "object",
+          "properties": {
+            "slug": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        }
+      }
+    },
+    "sdgs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": { "type": "integer" },
+          "title": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vintage_year": { "type": ["integer", "null"] },
+          "vintage_start_year": { "type": ["integer", "null"] },
+          "vintage_end_year": { "type": ["integer", "null"] },
+          "amount_available": { "type": "integer", "description": "Available mass in grams." },
+          "price": { "type": "integer" },
+          "currency": { "type": "string" }
+        }
+      }
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    }
+  }
+}

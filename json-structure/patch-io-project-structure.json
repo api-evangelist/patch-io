@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/draft-00/schema",
+  "title": "Patch Project Structure",
+  "description": "JSON Structure description of a verified Patch carbon project entity.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Patch project identifier." },
+    "name": { "type": "string" },
+    "mechanism": { "type": "string", "description": "removal | avoidance" },
+    "country": { "type": "string", "description": "ISO 3166-1 alpha-2." },
+    "technology_type": { "type": "object", "description": "Technology classification (DAC, biochar, ARR, REDD+, mineralization, etc.)." },
+    "standard": { "type": "object", "description": "Issuing carbon registry / standard." },
+    "inventory": { "type": "array", "description": "Per-vintage available mass and price." }
+  },
+  "lineage": {
+    "source": "patch-python SDK models (auto-generated from Patch's official OpenAPI document).",
+    "registries": ["Verra", "Gold Standard", "Puro.earth", "ACR", "CAR"],
+    "uomMass": "grams",
+    "uomPrice": "minor currency units (e.g. USD cents)"
+  }
+}

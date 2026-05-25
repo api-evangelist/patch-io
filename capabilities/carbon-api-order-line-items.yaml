@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Patch Carbon API — Order Line Items
+  description: Patch Carbon API — Order Line Items. 3 operations. Lead operation: Patch Create An Order Line Item. Self-contained Naftiko capability covering one Patch business surface.
+  tags:
+  - Patch
+  - Carbon Credits
+  - Orders
+  - Line Items
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    PATCH_API_KEY: PATCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: carbon-api-order-line-items
+    baseUri: https://api.patch.io/v1
+    description: Patch Carbon API — Order Line Items business capability. Self-contained, no shared references.
+    auth:
+      type: bearer
+      tokenEnv: PATCH_API_KEY
+    resources:
+    - name: orders-order_id-line_items
+      path: /orders/{order_id}/line_items
+      operations:
+      - name: createorderlineitem
+        method: POST
+        description: Patch Create An Order Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-order_id-line_items-serial_number
+      path: /orders/{order_id}/line_items/{serial_number}
+      operations:
+      - name: updateorderlineitem
+        method: PATCH
+        description: Patch Update An Order Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteorderlineitem
+        method: DELETE
+        description: Patch Delete An Order Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.

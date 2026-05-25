@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Patch Carbon API — Orders
+  description: Patch Carbon API — Orders. 6 operations. Lead operation: Patch Create An Order. Self-contained Naftiko capability covering one Patch business surface.
+  tags:
+  - Patch
+  - Carbon Credits
+  - Orders
+  - Procurement
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    PATCH_API_KEY: PATCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: carbon-api-orders
+    baseUri: https://api.patch.io/v1
+    description: Patch Carbon API — Orders business capability. Self-contained, no shared references.
+    auth:
+      type: bearer
+      tokenEnv: PATCH_API_KEY
+    resources:
+    - name: orders
+      path: /orders
+      operations:
+      - name: listorders
+        method: GET
+        description: Patch List Orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorder
+        method: POST
+        description: Patch Create An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-id
+      path: /orders/{id}
+      operations:
+      - name: retrieveorder
+        method: GET
+        description: Patch Retrieve An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteorder
+        method: DELETE
+        description: Patch Delete An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: orders-id-place
+      path: /orders/{id}/place
+      operations:
+      - name: placeorder
+        method: PATCH
+        description: Patch Place An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: orders-id-cancel
+      path: /orders/{id}/cancel
+      operations:
+      - name: cancelorder
+        method: PATCH
+        description: Patch Cancel An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.

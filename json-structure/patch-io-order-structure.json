@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/draft-00/schema",
+  "title": "Patch Order Structure",
+  "description": "JSON Structure description of a Patch carbon credit / removal order.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "state": { "type": "string", "description": "draft -> placed -> processing -> complete (or cancelled)." },
+    "amount": { "type": "integer", "description": "Total mass in grams across line items." },
+    "price": { "type": "integer", "description": "Subtotal in minor currency units." },
+    "patch_fee": { "type": "integer" },
+    "currency": { "type": "string" },
+    "line_items": { "type": "array", "description": "Per-vintage project allocations making up the order." },
+    "issued_to": { "type": "object", "description": "Beneficiary identification for attribution." },
+    "metadata": { "type": "object", "description": "Caller-supplied key/value metadata (search-indexable)." }
+  },
+  "lifecycle": ["draft", "placed", "processing", "complete", "cancelled"],
+  "lineage": {
+    "source": "patch-python SDK Order model (auto-generated from Patch's official OpenAPI document)."
+  }
+}

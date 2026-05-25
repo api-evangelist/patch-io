@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.patch.io/v1/orders",
+    "headers": {
+      "Authorization": "Bearer key_test_xxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "project_id": "pro_test_abc123",
+      "amount": 1000000,
+      "unit": "g",
+      "total_price": 18500,
+      "currency": "USD",
+      "state": "draft",
+      "metadata": { "checkout_id": "ck_2x9", "customer_email": "buyer@example.com" }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "error": null,
+      "data": {
+        "id": "ord_test_xyz789",
+        "created_at": "2026-05-24T14:32:11Z",
+        "production": false,
+        "state": "draft",
+        "amount": 1000000,
+        "unit": "g",
+        "price": 18500,
+        "patch_fee": 925,
+        "currency": "USD",
+        "registry_url": null,
+        "metadata": { "checkout_id": "ck_2x9", "customer_email": "buyer@example.com" },
+        "line_items": [
+          {
+            "id": "oli_test_001",
+            "project": { "id": "pro_test_abc123", "name": "Pacific Northwest Biochar Project" },
+            "vintage_year": 2025,
+            "amount": 1000000,
+            "unit": "g",
+            "price": 18500,
+            "currency": "USD"
+          }
+        ]
+      },
+      "meta": { "patch_version": 2 }
+    }
+  }
+}
