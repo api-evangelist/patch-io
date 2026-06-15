@@ -1,0 +1,303 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Patch Carbon API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/projects",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-indexed page number for paginated responses."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code filter."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project type slug (for example biomass, dac, mineralization, redd_plus)."
+              },
+              {
+                "name": "minimum_available_mass",
+                "value": "",
+                "type": "query",
+                "description": "Minimum available mass (in grams) the project must have in inventory."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of verified carbon projects available for purchase through Patch."
+        },
+        {
+          "info": {
+            "name": "Retrieve A Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a single verified carbon project by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Technology Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Technology Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/projects/technology_types"
+          },
+          "docs": "Returns the full taxonomy of project technology types (and parent technology types) used to classify Patch projects."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/orders",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-indexed page number for paginated responses."
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by metadata key/value pairs set when the order was created."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of carbon credit and removal orders for the authenticated organization."
+        },
+        {
+          "info": {
+            "name": "Create An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.patch.io/v1/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new carbon credit or removal order. Orders may be created in draft and placed later, or placed inline."
+        },
+        {
+          "info": {
+            "name": "Retrieve An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a single carbon credit or removal order by ID."
+        },
+        {
+          "info": {
+            "name": "Delete An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.patch.io/v1/orders/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a draft order. Placed and completed orders cannot be deleted; use the cancel endpoint instead."
+        },
+        {
+          "info": {
+            "name": "Place An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.patch.io/v1/orders/:id/place",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Transitions a draft order to placed, committing the credits to the buyer."
+        },
+        {
+          "info": {
+            "name": "Cancel An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.patch.io/v1/orders/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels a previously placed order where the project allows cancellation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Order Line Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create An Order Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.patch.io/v1/orders/:order_id/line_items",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new line item to a draft order tying a specific project, vintage, and quantity to the order."
+        },
+        {
+          "info": {
+            "name": "Update An Order Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.patch.io/v1/orders/:order_id/line_items/:serial_number",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serial_number",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing line item on a draft order."
+        },
+        {
+          "info": {
+            "name": "Delete An Order Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.patch.io/v1/orders/:order_id/line_items/:serial_number",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serial_number",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a line item from a draft order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

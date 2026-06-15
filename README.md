@@ -1,75 +1,106 @@
-# Patch — API Evangelist Profile
+# Patch (patch-io)
 
-[Patch](https://www.patch.io/) is an API-first climate platform for procuring carbon credits and removals, running climate strategy programs, and embedding climate action directly into other products. The core Patch API exposes carbon projects, orders, and order line items so developers can build offset purchase flows into checkouts, accounting systems, banking products, and ESG platforms.
+Patch is an API-first climate platform that helps companies procure carbon
+credits and removals, run climate strategy programs, and embed climate action
+into their own products. The core Patch API exposes carbon projects,
+estimates, and orders so developers can build offset purchase flows directly
+into checkouts, accounting systems, and ESG products. Patch also runs Radius
+(network-based impact acceleration), Offtake (climate tech funding and
+long-term credit access), and an RFP tool for carbon credit procurement.
+Official SDKs are available for Node.js, Python, Ruby, and other languages, and
+the API is documented with an OpenAPI 3 spec and Swagger UI.
 
-This repository is an API Evangelist profile of Patch — an `apis.yml` catalog entry plus a full set of machine-readable artifacts describing the Patch Carbon API surface.
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml)
 
-## Provider
+## Scope
 
-- Provider: **Patch** (`patch-io`)
-- Website: https://www.patch.io/
-- Documentation: https://docs.patch.io/
-- Swagger UI: https://api.patch.io/api-docs/index.html
-- GitHub: https://github.com/patch-technology
-- Contact: engineering@usepatch.com
+- **Type:** Index
+- **Position:** Provider
+- **Access:** 3rd-Party
 
-## APIs profiled
+## Tags
 
-- **Patch Carbon API** (`patch-io:carbon-api`) — base URL `https://api.patch.io`, all paths prefixed with `/v1/`. Authenticated via bearer-token API key (sandbox + live keys provisioned in the Patch dashboard).
+- Climate
+- Carbon Credits
+- Carbon Removal
+- Offsets
+- API-First
+- Embedded Climate
+- Marketplace
+- Sustainability
+- OpenAPI
+- SDKs
 
-### Resources covered
+## Timestamps
 
-| Resource | Operations |
-|---|---|
-| Projects | list, retrieve |
-| Technology Types | list |
-| Orders | list, create, retrieve, delete, place, cancel |
-| Order Line Items | create, update, delete |
+- **Created:** 2026-05-23
+- **Modified:** 2026-05-24
 
-## Repository structure
+## APIs
 
-```
-patch-io/
-├── apis.yml                            ← API Evangelist catalog entry (APIs.json 0.20)
-├── review.yml                          ← APIs.json review results
-├── README.md
-├── openapi/                            ← OpenAPI 3.0 spec (reconstructed from official SDKs)
-│   └── patch-io-carbon-api-openapi.yml
-├── capabilities/                       ← Naftiko capabilities + workflow compositions
-│   ├── carbon-api-projects.yaml
-│   ├── carbon-api-orders.yaml
-│   ├── carbon-api-order-line-items.yaml
-│   └── shared/
-│       └── embedded-checkout-offsets.yaml
-├── json-schema/                        ← JSON Schema for key resources
-│   ├── patch-io-project-schema.json
-│   ├── patch-io-order-schema.json
-│   └── patch-io-technology-type-schema.json
-├── json-structure/                     ← JSON Structure descriptions
-│   ├── patch-io-project-structure.json
-│   └── patch-io-order-structure.json
-├── json-ld/                            ← JSON-LD context
-│   └── patch-io-context.jsonld
-├── examples/                           ← Example request/response pairs
-│   ├── patch-io-retrieve-projects-example.json
-│   ├── patch-io-create-order-example.json
-│   └── patch-io-place-order-example.json
-├── rules/                              ← Spectral ruleset enforcing Patch conventions
-│   └── patch-io-rules.yml
-├── vocabulary/                         ← Carbon credit domain vocabulary
-│   └── patch-io-vocabulary.yml
-├── plans/                              ← API Commons Plans 0.1
-│   └── patch-io-plans-pricing.yml
-├── rate-limits/                        ← API Commons Rate Limits 0.1
-│   └── patch-io-rate-limits.yml
-└── finops/                             ← FOCUS / FinOps alignment
-    └── patch-io-finops.yml
-```
+### Patch Carbon API
 
-## Sourcing notes
+The Patch API lets developers browse carbon projects, generate emissions
+estimates, and place orders for verified carbon credits and removals. It
+is delivered as a REST/JSON API documented with OpenAPI 3, with official
+client libraries in multiple languages. The API is used by climate
+products, accounting platforms, and embedded climate flows to make carbon
+action programmable.
 
-The OpenAPI spec, JSON Schema files, and Naftiko capabilities in this repo are reconstructed from the publicly published Patch SDKs ([patch-python](https://github.com/patch-technology/patch-python), [patch-node](https://github.com/patch-technology/patch-node), [patch-ruby](https://github.com/patch-technology/patch-ruby)), all of which are auto-generated by `openapi-generator` from Patch's official OpenAPI document. Endpoint paths, HTTP methods, model field names, and field types are taken directly from that generated SDK source.
+- **Human URL:** [https://docs.patch.io/](https://docs.patch.io/)
+- **Base URL:** `https://api.patch.io/`
 
-## License
+#### Tags
 
-Profile content (apis.yml, capabilities, schemas, rules, vocabulary) is published under the same license as the [api-evangelist](https://github.com/api-evangelist) catalog. Patch trademarks and product names belong to Patch, Inc.
+- Carbon API
+- Projects
+- Orders
+- Estimates
+- Carbon Credits
+- Removal
+- OpenAPI
+- REST
+
+#### Properties
+
+- [Documentation](https://docs.patch.io/)
+- [Swagger U I](https://api.patch.io/api-docs/index.html)
+- [How It Works](https://www.patch.io/how-it-works)
+- [Climate Neutral](https://www.patch.io/climate-neutral)
+- [S D K Node](https://github.com/patch-technology/patch-node)
+- [S D K Python](https://github.com/patch-technology/patch-python)
+- [S D K Ruby](https://github.com/patch-technology/patch-ruby)
+- [GitHub Organization](https://github.com/patch-technology)
+- [Unit Partnership](https://www.unit.co/docs/partnerships/patch/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/patch-io/main/openapi/patch-io-carbon-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json)
+- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json)
+- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld)
+- [Spectral Ruleset](https://raw.githubusercontent.com/api-evangelist/patch-io/main/rules/patch-io-rules.yml)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml)
+- [Plans](https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml)
+- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml)
+- [Fin Ops](https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml)
+- [Postman Collection](collections/patch-io-carbon-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/patch-io-carbon-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [Website](https://www.patch.io/)
+- [Platform](https://www.patch.io/platform)
+- [How It Works](https://www.patch.io/how-it-works)
+- [Documentation](https://docs.patch.io/)
+- [Swagger U I](https://api.patch.io/api-docs/index.html)
+- [Git Hub](https://github.com/patch-technology)
+- [Blog](https://www.patch.io/blog)
+- [Climate Neutral](https://www.patch.io/climate-neutral)
+- [Careers](https://www.patch.io/careers)
+- [LinkedIn](https://www.linkedin.com/company/patch-technology/)
+
+## Maintainers
+
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

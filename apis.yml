@@ -76,7 +76,8 @@ apis:
       - type: JSONSchema
         url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
       - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
       - type: JSONStructure
         url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
       - type: JSONStructure
@@ -85,14 +86,6 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
       - type: SpectralRuleset
         url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rules/patch-io-rules.yml
-      - type: NaftikoCapability
-        url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/capabilities/carbon-api-projects.yaml
-      - type: NaftikoCapability
-        url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/capabilities/carbon-api-orders.yaml
-      - type: NaftikoCapability
-        url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/capabilities/carbon-api-order-line-items.yaml
-      - type: NaftikoCapability
-        url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/capabilities/shared/embedded-checkout-offsets.yaml
       - type: Vocabulary
         url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
       - type: Plans
@@ -105,7 +98,9 @@ apis:
       - name: Projects API
         description: Browse and filter verified carbon projects across removal and avoidance categories.
       - name: Estimates API
-        description: Generate emissions estimates for shipping, flights, vehicles, ecommerce orders, and custom mass-based activity.
+        description: >-
+          Generate emissions estimates for shipping, flights, vehicles, ecommerce orders, and custom mass-based
+          activity.
       - name: Orders API
         description: Place, retrieve, and cancel carbon credit and removal orders programmatically.
       - name: Technologies
