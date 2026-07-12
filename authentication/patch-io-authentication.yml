@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/patch-io-carbon-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: API key bearer token issued from the Patch dashboard. Sandbox and live keys are
+    separated.
+  sources:
+  - openapi/patch-io-carbon-api-openapi.yml

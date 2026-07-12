@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.patch.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 17 06:01:40 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.patch.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  7 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.patch.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  7 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: patch.io
+  dnssec: false
+  caa:
+  - ;; connection timed out; no servers could be reached
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
