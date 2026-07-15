@@ -138,6 +138,8 @@ apis:
       - type: APIKey
         description: Bearer token API keys provisioned via the Patch dashboard, with separate sandbox and live keys.
 common:
+  - type: AgenticAccess
+    url: agentic-access/patch-io-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/patch-io-vulnerability-disclosure.yml
   - type: DomainSecurity
