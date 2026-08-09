@@ -1,15 +1,24 @@
 aid: patch-io
 name: Patch
-description: |
-  Patch is an API-first climate platform that helps companies procure carbon
+description: 'Patch is an API-first climate platform that helps companies procure carbon
+
   credits and removals, run climate strategy programs, and embed climate action
+
   into their own products. The core Patch API exposes carbon projects,
+
   estimates, and orders so developers can build offset purchase flows directly
+
   into checkouts, accounting systems, and ESG products. Patch also runs Radius
+
   (network-based impact acceleration), Offtake (climate tech funding and
+
   long-term credit access), and an RFP tool for carbon credit procurement.
+
   Official SDKs are available for Node.js, Python, Ruby, and other languages, and
+
   the API is documented with an OpenAPI 3 spec and Swagger UI.
+
+  '
 type: Index
 accessModel:
   pricing: free
@@ -28,19 +37,19 @@ position: Provider
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/patch-io.png
 tags:
-  - Climate
-  - Carbon Credits
-  - Carbon Removal
-  - Offsets
-  - API-First
-  - Embedded Climate
-  - Marketplace
-  - Sustainability
-  - OpenAPI
-  - SDKs
+- Climate
+- Carbon Credits
+- Carbon Removal
+- Offsets
+- API-First
+- Embedded Climate
+- Marketplace
+- Sustainability
+- OpenAPI
+- SDKs
 url: https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml
 created: '2026-05-23'
-modified: '2026-05-24'
+modified: '2026-08-08'
 specificationVersion: '0.20'
 apis:
 - aid: patch-io:patch-io-order-line-items-api
@@ -72,37 +81,27 @@ apis:
   - type: UnitPartnership
     url: https://www.unit.co/docs/partnerships/patch/
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
   - type: SpectralRuleset
     url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rules/patch-io-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
 - aid: patch-io:patch-io-orders-api
   name: Patch Orders API
   description: Place, retrieve, place, and cancel carbon credit and removal orders.
@@ -132,37 +131,27 @@ apis:
   - type: UnitPartnership
     url: https://www.unit.co/docs/partnerships/patch/
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
   - type: SpectralRuleset
     url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rules/patch-io-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
 - aid: patch-io:patch-io-projects-api
   name: Patch Projects API
   description: Browse and retrieve verified carbon projects across removal and avoidance categories.
@@ -192,37 +181,27 @@ apis:
   - type: UnitPartnership
     url: https://www.unit.co/docs/partnerships/patch/
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
   - type: SpectralRuleset
     url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rules/patch-io-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
 - aid: patch-io:patch-io-technology-types-api
   name: Patch Technology Types API
   description: List the technology and parent technology types backing Patch's carbon project taxonomy.
@@ -252,66 +231,72 @@ apis:
   - type: UnitPartnership
     url: https://www.unit.co/docs/partnerships/patch/
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld
   - type: SpectralRuleset
     url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rules/patch-io-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
 common:
-  - type: AgenticAccess
-    url: agentic-access/patch-io-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/patch-io-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/patch-io-domain-security.yml
-  - type: Authentication
-    url: authentication/patch-io-authentication.yml
-  - type: Website
-    url: https://www.patch.io/
-  - type: Platform
-    url: https://www.patch.io/platform
-  - type: HowItWorks
-    url: https://www.patch.io/how-it-works
-  - type: Documentation
-    url: https://docs.patch.io/
-  - type: SwaggerUI
-    url: https://api.patch.io/api-docs/index.html
-  - type: GitHub
-    url: https://github.com/patch-technology
-  - type: Blog
-    url: https://www.patch.io/blog
-  - type: ClimateNeutral
-    url: https://www.patch.io/climate-neutral
-  - type: Careers
-    url: https://www.patch.io/careers
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/patch-technology/
+- type: AgenticAccess
+  url: agentic-access/patch-io-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/patch-io-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/patch-io-domain-security.yml
+- type: Authentication
+  url: authentication/patch-io-authentication.yml
+- type: Website
+  url: https://www.patch.io/
+- type: Platform
+  url: https://www.patch.io/platform
+- type: HowItWorks
+  url: https://www.patch.io/how-it-works
+- type: Documentation
+  url: https://docs.patch.io/
+- type: SwaggerUI
+  url: https://api.patch.io/api-docs/index.html
+- type: GitHub
+  url: https://github.com/patch-technology
+- type: Blog
+  url: https://www.patch.io/blog
+- type: ClimateNeutral
+  url: https://www.patch.io/climate-neutral
+- type: Careers
+  url: https://www.patch.io/careers
+- type: LinkedIn
+  url: https://www.linkedin.com/company/patch-technology/
+- type: GitHubOrg
+  url: https://github.com/patch-technology
+- type: Pricing
+  url: https://www.patch.io/how-it-works
+- type: StatusPage
+  url: https://status.patch.io
+- type: X
+  url: https://x.com/usepatch
+- type: Plans
+  url: plans/patch-io-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/patch-io-rate-limits.yml
+- type: FinOps
+  url: finops/patch-io-finops.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-merged-from:
+- patch

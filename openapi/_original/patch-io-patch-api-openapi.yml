@@ -1,0 +1,1039 @@
+openapi: 3.0.3
+info:
+  title: Patch API
+  description: >
+    The Patch REST API allows developers to access the full carbon removal
+    marketplace, create and manage orders for carbon offsets, retrieve estimates
+    for CO2 compensation costs, browse available carbon projects, and integrate
+    sustainability features into applications. Authentication is via Bearer token
+    API keys obtained from the Patch dashboard, with separate test and production
+    key environments supported.
+  version: '2'
+  contact:
+    email: engineering@usepatch.com
+  x-api-id: patch:patch-api
+servers:
+  - url: https://api.patch.io
+    description: Patch API production server
+security:
+  - bearer_auth: []
+tags:
+  - name: Orders
+    description: Create and manage carbon offset orders
+  - name: Order Line Items
+    description: Manage individual line items within draft orders
+  - name: Projects
+    description: Browse and retrieve carbon removal projects
+  - name: Technology Types
+    description: Retrieve available carbon removal technology types
+paths:
+  /v1/orders:
+    get:
+      summary: Retrieves a list of orders
+      description: >
+        Retrieves a list of orders and its allocation offsets or negative
+        emissions. You can only retrieve orders associated with the organization
+        you are querying for.
+      operationId: retrieve_orders
+      tags:
+        - Orders
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number for pagination
+        - name: metadata
+          in: query
+          schema:
+            type: string
+          description: Filter by metadata
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Creates an order
+      description: Creates an order in the `placed` or `draft`, or `reserved` state.
+      operationId: create_order
+      tags:
+        - Orders
+      parameters:
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '200':
+          description: The created order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/orders/{id}:
+    get:
+      summary: Retrieves an order
+      description: >
+        Retrieves a given order and its allocation offsets or negative emissions.
+        You can only retrieve orders associated with the organization you are
+        querying for.
+      operationId: retrieve_order
+      tags:
+        - Orders
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: The order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      summary: Deletes a draft order
+      description: Deletes an order that is in the `draft` state.
+      operationId: delete_order
+      tags:
+        - Orders
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order UID
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: The deleted order confirmation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOrderResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/orders/{id}/cancel:
+    patch:
+      summary: Cancel an order
+      description: >
+        Cancelling an order removes the associated offset allocation from an
+        order. You will not be charged for cancelled orders. Only orders in the
+        `draft` or `placed` state can be cancelled.
+      operationId: cancel_order
+      tags:
+        - Orders
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: The cancelled order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/orders/{id}/place:
+    patch:
+      summary: Place an order
+      description: >
+        Placing an order confirms an order's allocation of offsets. Only orders
+        that are in the `draft` state can be placed.
+      operationId: place_order
+      tags:
+        - Orders
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceOrderRequest'
+      responses:
+        '200':
+          description: The placed order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/orders/{order_id}/line_items:
+    post:
+      summary: Creates an order line item
+      description: Creates a line item on an order that is in the `draft` state.
+      operationId: create_order_line_item
+      tags:
+        - Order Line Items
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderLineItemRequest'
+      responses:
+        '200':
+          description: The created order line item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderLineItemResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/orders/{order_id}/line_items/{serial_number}:
+    patch:
+      summary: Updates an order line item
+      description: Updates a line item on an order that is in the `draft` state.
+      operationId: update_order_line_item
+      tags:
+        - Order Line Items
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+        - name: serial_number
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The line item serial number
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrderLineItemRequest'
+      responses:
+        '200':
+          description: The updated order line item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderLineItemResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      summary: Deletes an order line item
+      description: Deletes a line item on an order that is in the `draft` state.
+      operationId: delete_order_line_item
+      tags:
+        - Order Line Items
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+        - name: serial_number
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The line item serial number
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: The deleted order line item confirmation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOrderLineItemResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/projects:
+    get:
+      summary: Retrieves a list of projects
+      description: >
+        Retrieves a list of projects available for purchase on Patch's platform.
+      operationId: retrieve_projects
+      tags:
+        - Projects
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number for pagination
+        - name: country
+          in: query
+          schema:
+            type: string
+          description: Filter by country code
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: Filter by project type
+        - name: minimum_available_mass
+          in: query
+          schema:
+            type: integer
+          description: Filter by minimum available mass in grams
+        - name: Accept-Language
+          in: header
+          schema:
+            type: string
+          description: Language preference for project descriptions
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: A list of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/projects/{id}:
+    get:
+      summary: Retrieves a project
+      description: Retrieves a project available on Patch's platform.
+      operationId: retrieve_project
+      tags:
+        - Projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The project ID
+        - name: Accept-Language
+          in: header
+          schema:
+            type: string
+          description: Language preference for project description
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: The project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/projects/technology_types:
+    get:
+      summary: Retrieves the list of technology types
+      description: Retrieves a list of all technology types.
+      operationId: retrieve_technology_types
+      tags:
+        - Technology Types
+      parameters:
+        - name: Patch-Version
+          in: header
+          schema:
+            type: integer
+            default: 2
+      responses:
+        '200':
+          description: A list of technology types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechnologyTypeListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: >
+        Bearer token API key obtained from the Patch dashboard. Use test keys
+        for sandbox and production keys for live orders.
+  schemas:
+    Order:
+      type: object
+      description: A carbon offset order
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the order
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the order was created
+        production:
+          type: boolean
+          description: Whether this is a production (vs. test) order
+        state:
+          type: string
+          enum: [draft, placed, cancelled, reserved]
+          description: Current state of the order
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement (e.g., g, kg, t)
+        price:
+          type: integer
+          description: Price in the smallest currency unit (e.g., cents)
+        patch_fee:
+          type: integer
+          description: Patch platform fee in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code (e.g., USD)
+        registry_url:
+          type: string
+          format: uri
+          description: URL to the registry record for this order
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Custom key-value metadata attached to the order
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Individual line items within the order
+        issued_to:
+          $ref: '#/components/schemas/OrderIssuedTo'
+    OrderIssuedTo:
+      type: object
+      description: Entity to whom the carbon credits are issued
+      properties:
+        name:
+          type: string
+          description: Name of the recipient
+        email:
+          type: string
+          format: email
+          description: Email address of the recipient
+    OrderLineItem:
+      type: object
+      description: An individual line item within an order
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        project:
+          $ref: '#/components/schemas/OrderLineItemProject'
+        vintage_year:
+          type: integer
+          description: Specific vintage year for the carbon credits
+        vintage_start_year:
+          type: integer
+          description: Start year of the vintage range
+        vintage_end_year:
+          type: integer
+          description: End year of the vintage range
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement
+        price:
+          type: integer
+          description: Price in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code
+    OrderLineItemProject:
+      type: object
+      description: Project reference within an order line item
+      properties:
+        id:
+          type: string
+          description: Project identifier
+        name:
+          type: string
+          description: Project name
+    CreateOrderRequest:
+      type: object
+      description: Request body for creating a new order
+      properties:
+        project_id:
+          type: string
+          description: ID of the carbon project to purchase from
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Custom key-value metadata to attach to the order
+        state:
+          type: string
+          enum: [draft, placed, reserved]
+          description: Initial state for the order
+        vintage_year:
+          type: integer
+          description: Specific vintage year for the carbon credits
+        vintage_start_year:
+          type: integer
+          description: Start year of the vintage range
+        vintage_end_year:
+          type: integer
+          description: End year of the vintage range
+        total_price:
+          type: integer
+          description: Total price in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement
+        issued_to:
+          $ref: '#/components/schemas/OrderIssuedTo'
+    PlaceOrderRequest:
+      type: object
+      description: Optional request body for placing an order
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Additional metadata to attach when placing
+    CreateOrderLineItemRequest:
+      type: object
+      description: Request body for creating an order line item
+      required:
+        - project_id
+      properties:
+        project_id:
+          type: string
+          description: ID of the carbon project for this line item
+        vintage_year:
+          type: integer
+          description: Specific vintage year for the carbon credits
+        vintage_start_year:
+          type: integer
+          description: Start year of the vintage range
+        vintage_end_year:
+          type: integer
+          description: End year of the vintage range
+        price:
+          type: integer
+          description: Price in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement
+    UpdateOrderLineItemRequest:
+      type: object
+      description: Request body for updating an order line item
+      properties:
+        vintage_year:
+          type: integer
+          description: Specific vintage year for the carbon credits
+        vintage_start_year:
+          type: integer
+          description: Start year of the vintage range
+        vintage_end_year:
+          type: integer
+          description: End year of the vintage range
+        price:
+          type: integer
+          description: Price in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement
+    Project:
+      type: object
+      description: A carbon removal project available on the Patch platform
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project
+        production:
+          type: boolean
+          description: Whether this is a production (vs. test) project
+        name:
+          type: string
+          description: Name of the project
+        description:
+          type: string
+          description: Detailed description of the project
+        mechanism:
+          type: string
+          description: Carbon removal mechanism (e.g., avoidance, removal)
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code where the project is located
+        state:
+          type: string
+          description: Current state of the project
+        issuance_type:
+          type: string
+          description: Type of carbon credit issuance
+        latitude:
+          type: number
+          format: float
+          description: Geographic latitude of the project
+        longitude:
+          type: number
+          format: float
+          description: Geographic longitude of the project
+        project_partner:
+          type: string
+          description: Name of the project partner or developer
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+          description: Photos of the project
+        verifier:
+          type: string
+          description: Third-party verifier or certifier
+        standard:
+          $ref: '#/components/schemas/Standard'
+        sdgs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sdg'
+          description: UN Sustainable Development Goals supported by this project
+        tagline:
+          type: string
+          description: Short tagline for the project
+        technology_type:
+          $ref: '#/components/schemas/TechnologyType'
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/Highlight'
+          description: Key highlights of the project
+        inventory:
+          $ref: '#/components/schemas/Inventory'
+        disclaimers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Disclaimer'
+          description: Legal disclaimers for the project
+    Photo:
+      type: object
+      description: A photo associated with a project
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the photo
+    Standard:
+      type: object
+      description: Carbon standard or certification
+      properties:
+        name:
+          type: string
+          description: Name of the standard (e.g., Gold Standard, VCS)
+        link:
+          type: string
+          format: uri
+          description: URL to the standard's website
+    Sdg:
+      type: object
+      description: UN Sustainable Development Goal
+      properties:
+        number:
+          type: integer
+          description: SDG number (1-17)
+        title:
+          type: string
+          description: SDG title
+        link:
+          type: string
+          format: uri
+          description: URL to the SDG page
+    Highlight:
+      type: object
+      description: A key highlight of a project
+      properties:
+        title:
+          type: string
+          description: Title of the highlight
+        description:
+          type: string
+          description: Description of the highlight
+    Inventory:
+      type: object
+      description: Inventory information for a project
+      properties:
+        amount_available:
+          type: integer
+          description: Amount of carbon credits available in grams
+        unit:
+          type: string
+          description: Unit of measurement
+    Disclaimer:
+      type: object
+      description: A legal disclaimer for a project
+      properties:
+        content:
+          type: string
+          description: Text of the disclaimer
+    TechnologyType:
+      type: object
+      description: A carbon removal technology type
+      properties:
+        slug:
+          type: string
+          description: URL-friendly slug identifier
+        name:
+          type: string
+          description: Human-readable name of the technology type
+        parent_technology_type:
+          $ref: '#/components/schemas/ParentTechnologyType'
+    ParentTechnologyType:
+      type: object
+      description: Parent category for a technology type
+      properties:
+        slug:
+          type: string
+          description: URL-friendly slug identifier
+        name:
+          type: string
+          description: Human-readable name of the parent technology type
+    OrderResponse:
+      type: object
+      description: API response wrapping an Order
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the request failed
+        data:
+          $ref: '#/components/schemas/Order'
+    OrderListResponse:
+      type: object
+      description: API response wrapping a list of Orders
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the request failed
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        meta:
+          $ref: '#/components/schemas/MetaIndexObject'
+    DeleteOrderResponse:
+      type: object
+      description: API response confirming order deletion
+      properties:
+        success:
+          type: boolean
+          description: Whether the deletion was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the deletion failed
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the deleted order
+    OrderLineItemResponse:
+      type: object
+      description: API response wrapping an OrderLineItem
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the request failed
+        data:
+          $ref: '#/components/schemas/OrderLineItem'
+    DeleteOrderLineItemResponse:
+      type: object
+      description: API response confirming order line item deletion
+      properties:
+        success:
+          type: boolean
+          description: Whether the deletion was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the deletion failed
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the deleted line item
+    ProjectResponse:
+      type: object
+      description: API response wrapping a Project
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the request failed
+        data:
+          $ref: '#/components/schemas/Project'
+    ProjectListResponse:
+      type: object
+      description: API response wrapping a list of Projects
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the request failed
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        meta:
+          $ref: '#/components/schemas/MetaIndexObject'
+    TechnologyTypeListResponse:
+      type: object
+      description: API response wrapping a list of TechnologyTypes
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type: string
+          nullable: true
+          description: Error message if the request failed
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TechnologyType'
+        meta:
+          $ref: '#/components/schemas/MetaIndexObject'
+    MetaIndexObject:
+      type: object
+      description: Pagination metadata
+      properties:
+        has_more:
+          type: boolean
+          description: Whether there are more records to retrieve
+        next_page:
+          type: integer
+          nullable: true
+          description: The next page number, if available
+        current_page:
+          type: integer
+          description: The current page number
+    ErrorResponse:
+      type: object
+      description: API error response
+      properties:
+        success:
+          type: boolean
+          example: false
+          description: Always false for error responses
+        error:
+          type: string
+          description: Error message describing what went wrong
