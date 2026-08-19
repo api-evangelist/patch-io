@@ -50,7 +50,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml
 created: '2026-05-23'
 modified: '2026-08-08'
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 apis:
 - aid: patch-io:patch-io-order-line-items-api
   name: Patch Order Line Items API
