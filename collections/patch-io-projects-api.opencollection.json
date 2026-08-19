@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Patch Carbon Order Line Items Projects API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/projects",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-indexed page number for paginated responses."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code filter."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project type slug (for example biomass, dac, mineralization, redd_plus)."
+              },
+              {
+                "name": "minimum_available_mass",
+                "value": "",
+                "type": "query",
+                "description": "Minimum available mass (in grams) the project must have in inventory."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of verified carbon projects available for purchase through Patch."
+        },
+        {
+          "info": {
+            "name": "Retrieve A Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a single verified carbon project by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

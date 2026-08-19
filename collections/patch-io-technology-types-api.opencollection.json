@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Patch Carbon Order Line Items Technology Types API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Technology Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Technology Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.patch.io/v1/projects/technology_types"
+          },
+          "docs": "Returns the full taxonomy of project technology types (and parent technology types) used to classify Patch projects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

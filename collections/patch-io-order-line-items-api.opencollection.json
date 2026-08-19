@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Patch Carbon Order Line Items API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order Line Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create An Order Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.patch.io/v1/orders/:order_id/line_items",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new line item to a draft order tying a specific project, vintage, and quantity to the order."
+        },
+        {
+          "info": {
+            "name": "Update An Order Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.patch.io/v1/orders/:order_id/line_items/:serial_number",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serial_number",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing line item on a draft order."
+        },
+        {
+          "info": {
+            "name": "Delete An Order Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.patch.io/v1/orders/:order_id/line_items/:serial_number",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serial_number",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a line item from a draft order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

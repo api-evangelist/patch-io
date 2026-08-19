@@ -1,0 +1,428 @@
+{
+  "item": [
+    {
+      "id": "f3d6dc0f-65f6-4dcf-a46a-cdb5b4b9f3c0",
+      "name": "Projects",
+      "description": {
+        "content": "Browse and retrieve verified carbon projects across removal and avoidance categories.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "daa41ee3-dba8-4cf0-bbd3-17323dbf7479",
+          "name": "List Projects",
+          "request": {
+            "name": "List Projects",
+            "description": {
+              "content": "Returns a paginated list of verified carbon projects available for purchase through Patch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "1-indexed page number for paginated responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 country code filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by project type slug (for example biomass, dac, mineralization, redd_plus)."
+                },
+                {
+                  "disabled": false,
+                  "key": "minimum_available_mass",
+                  "value": "<integer>",
+                  "description": "Minimum available mass (in grams) the project must have in inventory."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50272eb3-282e-4a06-9fe5-b2ee09a4ee15",
+              "name": "Project list response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimum_available_mass",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {},\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"production\": true,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"mechanism\": \"string\",\n      \"country\": \"string\",\n      \"state\": \"string\",\n      \"issuance_type\": \"string\",\n      \"latitude\": 8547.263056569267,\n      \"longitude\": 9788.298041595444,\n      \"project_partner\": \"string\",\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"http://QlTaipZWaCJMopIy.xepT9R,nw.\"\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"https://LodUrgdrSnXkH.yntisnCnWSi4WIIRbeiigrHr6sGPFh\"\n        }\n      ],\n      \"verifier\": \"string\",\n      \"standard\": {\n        \"type\": \"string\",\n        \"acronym\": \"string\"\n      },\n      \"sdgs\": [\n        {\n          \"number\": 7484,\n          \"title\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"number\": 5306,\n          \"title\": \"string\",\n          \"description\": \"string\"\n        }\n      ],\n      \"tagline\": \"string\",\n      \"technology_type\": {\n        \"slug\": \"dac\",\n        \"name\": \"Direct Air Capture\",\n        \"parent_technology_type\": {\n          \"slug\": \"string\",\n          \"name\": \"string\"\n        }\n      },\n      \"highlights\": [\n        {\n          \"headline\": \"string\",\n          \"details\": \"string\"\n        },\n        {\n          \"headline\": \"string\",\n          \"details\": \"string\"\n        }\n      ],\n      \"inventory\": [\n        {\n          \"vintage_year\": 7780,\n          \"vintage_start_year\": 6517,\n          \"vintage_end_year\": 4979,\n          \"amount_available\": 6301,\n          \"price\": 8423,\n          \"currency\": \"USD\"\n        },\n        {\n          \"vintage_year\": 911,\n          \"vintage_start_year\": 8070,\n          \"vintage_end_year\": 7473,\n          \"amount_available\": 4845,\n          \"price\": 6807,\n          \"currency\": \"USD\"\n        }\n      ],\n      \"disclaimers\": [\n        {\n          \"title\": \"string\",\n          \"body\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"body\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"production\": false,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"mechanism\": \"string\",\n      \"country\": \"string\",\n      \"state\": \"string\",\n      \"issuance_type\": \"string\",\n      \"latitude\": 258.67769703613374,\n      \"longitude\": 9900.040079079043,\n      \"project_partner\": \"string\",\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"https://aNTednvzTnBRlVdMpULZRBKDem.vlZuReNhwUmb.tfyyHhP7+l.q7RUi.XXEIQAwLmCAe0OVNhnHyRIRmfgudi053aBRVcG.0B\"\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"http://lBovTDyp.gjpmvznYEYtA,PBlO5DpFvWgA+QGqxDfHUdfH\"\n        }\n      ],\n      \"verifier\": \"string\",\n      \"standard\": {\n        \"type\": \"string\",\n        \"acronym\": \"string\"\n      },\n      \"sdgs\": [\n        {\n          \"number\": 3957,\n          \"title\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"number\": 9461,\n          \"title\": \"string\",\n          \"description\": \"string\"\n        }\n      ],\n      \"tagline\": \"string\",\n      \"technology_type\": {\n        \"slug\": \"dac\",\n        \"name\": \"Direct Air Capture\",\n        \"parent_technology_type\": {\n          \"slug\": \"string\",\n          \"name\": \"string\"\n        }\n      },\n      \"highlights\": [\n        {\n          \"headline\": \"string\",\n          \"details\": \"string\"\n        },\n        {\n          \"headline\": \"string\",\n          \"details\": \"string\"\n        }\n      ],\n      \"inventory\": [\n        {\n          \"vintage_year\": 4107,\n          \"vintage_start_year\": 1871,\n          \"vintage_end_year\": 6378,\n          \"amount_available\": 5372,\n          \"price\": 2748,\n          \"currency\": \"USD\"\n        },\n        {\n          \"vintage_year\": 6459,\n          \"vintage_start_year\": 6649,\n          \"vintage_end_year\": 5726,\n          \"amount_available\": 2427,\n          \"price\": 2221,\n          \"currency\": \"USD\"\n        }\n      ],\n      \"disclaimers\": [\n        {\n          \"title\": \"string\",\n          \"body\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"body\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"prev_page\": 7705,\n    \"next_page\": 3487\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7af0580-f16b-4b86-b06c-ea0dabb1f6f1",
+              "name": "API key missing, malformed, or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimum_available_mass",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": 4241,\n    \"message\": \"string\"\n  },\n  \"data\": {},\n  \"meta\": {\n    \"patch_version\": 9191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98d3083c-b4aa-49e4-ac09-70b360c93365",
+          "name": "Retrieve A Project",
+          "request": {
+            "name": "Retrieve A Project",
+            "description": {
+              "content": "Returns a single verified carbon project by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7db470c1-66bb-4383-be07-d78744762a61",
+              "name": "Project response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {},\n  \"data\": {\n    \"id\": \"string\",\n    \"production\": true,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"mechanism\": \"string\",\n    \"country\": \"string\",\n    \"state\": \"string\",\n    \"issuance_type\": \"string\",\n    \"latitude\": 1591.7702874996487,\n    \"longitude\": 6065.552247716376,\n    \"project_partner\": \"string\",\n    \"photos\": [\n      {\n        \"id\": \"string\",\n        \"url\": \"https://rybravVjIaSNnXUwTRfK.xusfP8TmVnD-8DUvfIuyqgGHBsRp26VxeEZJBsamrFJU8FHqO.H\"\n      },\n      {\n        \"id\": \"string\",\n        \"url\": \"https://NaILHLZlD.qjz-ZEgEyli9Xdvnkgx-H\"\n      }\n    ],\n    \"verifier\": \"string\",\n    \"standard\": {\n      \"type\": \"string\",\n      \"acronym\": \"string\"\n    },\n    \"sdgs\": [\n      {\n        \"number\": 2894,\n        \"title\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"number\": 2050,\n        \"title\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"tagline\": \"string\",\n    \"technology_type\": {\n      \"slug\": \"dac\",\n      \"name\": \"Direct Air Capture\",\n      \"parent_technology_type\": {\n        \"slug\": \"string\",\n        \"name\": \"string\"\n      }\n    },\n    \"highlights\": [\n      {\n        \"headline\": \"string\",\n        \"details\": \"string\"\n      },\n      {\n        \"headline\": \"string\",\n        \"details\": \"string\"\n      }\n    ],\n    \"inventory\": [\n      {\n        \"vintage_year\": 6120,\n        \"vintage_start_year\": 8276,\n        \"vintage_end_year\": 9400,\n        \"amount_available\": 7431,\n        \"price\": 1764,\n        \"currency\": \"USD\"\n      },\n      {\n        \"vintage_year\": 4326,\n        \"vintage_start_year\": 4105,\n        \"vintage_end_year\": 8467,\n        \"amount_available\": 565,\n        \"price\": 5584,\n        \"currency\": \"USD\"\n      }\n    ],\n    \"disclaimers\": [\n      {\n        \"title\": \"string\",\n        \"body\": \"string\"\n      },\n      {\n        \"title\": \"string\",\n        \"body\": \"string\"\n      }\n    ]\n  },\n  \"meta\": {\n    \"prev_page\": 9745,\n    \"next_page\": 9769\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b86628e4-124d-4c92-908f-f4e4f61c3b5a",
+              "name": "API key missing, malformed, or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": 4241,\n    \"message\": \"string\"\n  },\n  \"data\": {},\n  \"meta\": {\n    \"patch_version\": 9191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5956784a-bf71-4fed-867e-af092a4f9f2b",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": 4241,\n    \"message\": \"string\"\n  },\n  \"data\": {},\n  \"meta\": {\n    \"patch_version\": 9191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.patch.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4cb8d6a4-6a82-4b17-86cc-de94b675e7df",
+    "name": "Patch Carbon Order Line Items Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Patch API lets developers browse verified carbon projects, generate\nemissions estimates, and place orders for carbon credits and removals.\nReconstructed from the publicly published patch-python, patch-node, and\npatch-ruby SDKs (auto-generated by openapi-generator from the official\nPatch OpenAPI document).\n\n\nContact Support:\n Name: Patch Engineering\n Email: engineering@usepatch.com",
+      "type": "text/plain"
+    }
+  }
+}

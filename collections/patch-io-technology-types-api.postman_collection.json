@@ -1,0 +1,168 @@
+{
+  "item": [
+    {
+      "id": "047fbf34-da67-4784-8669-0a6ff6754ad6",
+      "name": "Technology Types",
+      "description": {
+        "content": "List the technology and parent technology types backing Patch's carbon project taxonomy.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fffec1b8-b922-459f-91f4-716b03938e8d",
+          "name": "List Technology Types",
+          "request": {
+            "name": "List Technology Types",
+            "description": {
+              "content": "Returns the full taxonomy of project technology types (and parent technology types) used to classify Patch projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                "technology_types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b366328-adcb-4616-8e93-1f551f206a42",
+              "name": "Technology type list response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    "technology_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {},\n  \"data\": [\n    {\n      \"slug\": \"dac\",\n      \"name\": \"Direct Air Capture\",\n      \"parent_technology_type\": {\n        \"slug\": \"string\",\n        \"name\": \"string\"\n      }\n    },\n    {\n      \"slug\": \"dac\",\n      \"name\": \"Direct Air Capture\",\n      \"parent_technology_type\": {\n        \"slug\": \"string\",\n        \"name\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"prev_page\": 4890,\n    \"next_page\": 7743\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41ee6c1b-2b67-47cc-a6a0-2f5267e78671",
+              "name": "API key missing, malformed, or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    "technology_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": 292,\n    \"message\": \"string\"\n  },\n  \"data\": {},\n  \"meta\": {\n    \"patch_version\": 5183\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.patch.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7100367b-fcc1-48f3-97b3-a932554a8b8c",
+    "name": "Patch Carbon Order Line Items Technology Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Patch API lets developers browse verified carbon projects, generate\nemissions estimates, and place orders for carbon credits and removals.\nReconstructed from the publicly published patch-python, patch-node, and\npatch-ruby SDKs (auto-generated by openapi-generator from the official\nPatch OpenAPI document).\n\n\nContact Support:\n Name: Patch Engineering\n Email: engineering@usepatch.com",
+      "type": "text/plain"
+    }
+  }
+}
