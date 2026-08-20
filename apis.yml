@@ -46,6 +46,17 @@ tags:
 - Marketplace
 - Sustainability
 - OpenAPI
+- SDK
+tags_raw:
+- Climate
+- Carbon Credits
+- Carbon Removal
+- Offsets
+- API-First
+- Embedded Climate
+- Marketplace
+- Sustainability
+- OpenAPI
 - SDKs
 url: https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml
 created: '2026-05-23'
@@ -108,6 +119,8 @@ apis:
   humanURL: https://docs.patch.io/
   baseURL: https://api.patch.io/
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -158,6 +171,8 @@ apis:
   humanURL: https://docs.patch.io/
   baseURL: https://api.patch.io/
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
