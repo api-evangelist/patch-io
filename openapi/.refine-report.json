@@ -1,10 +1,8 @@
 {
   "provider": "patch-io",
   "sources": [
-    "patch-io-order-line-items-api-openapi.yml",
-    "patch-io-orders-api-openapi.yml",
-    "patch-io-projects-api-openapi.yml",
-    "patch-io-technology-types-api-openapi.yml"
+    "_original/patch-io-carbon-api-openapi.yml",
+    "_original/patch-io-patch-api-openapi.yml"
   ],
   "outputs": [
     "patch-io-order-line-items-api-openapi.yml",
@@ -15,6 +13,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "patch-io-carbon-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "patch-io-patch-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "tag 'Order Line Items' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied",
+    "tag 'Orders' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied",
+    "tag 'Projects' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied",
+    "tag 'Technology Types' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied"
+  ],
+  "skipped": [
+    "patch-io-order-line-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "patch-io-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "patch-io-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "patch-io-technology-types-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
