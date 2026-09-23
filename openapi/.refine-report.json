@@ -20,7 +20,8 @@
     "tag 'Order Line Items' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied",
     "tag 'Orders' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied",
     "tag 'Projects' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied",
-    "tag 'Technology Types' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied"
+    "tag 'Technology Types' spans 2 source specs (patch-io-carbon-api-openapi.yml, patch-io-patch-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "patch-io-order-line-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",

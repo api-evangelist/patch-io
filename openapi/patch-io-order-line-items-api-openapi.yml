@@ -123,28 +123,55 @@ paths:
       description: Production API
 components:
   schemas:
-    Meta:
+    CreateOrderLineItemRequest:
       type: object
-      description: Pagination and response metadata block returned on list endpoints.
+      required:
+      - project_id
       properties:
-        prev_page:
-          type:
-          - integer
-          - 'null'
-        next_page:
-          type:
-          - integer
-          - 'null'
-    OrderLineItemResponse:
+        project_id:
+          type: string
+        vintage_year:
+          type: integer
+        vintage_start_year:
+          type: integer
+        vintage_end_year:
+          type: integer
+        price:
+          type: integer
+        currency:
+          type: string
+          example: USD
+        amount:
+          type: integer
+        unit:
+          type: string
+          example: g
+    ErrorResponse:
       type: object
       properties:
         success:
           type: boolean
-        error: {}
-        data:
-          $ref: '#/components/schemas/OrderLineItem'
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+        data: {}
         meta:
-          $ref: '#/components/schemas/Meta'
+          type: object
+          properties:
+            patch_version:
+              type: integer
+    OrderLineItemProject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     OrderLineItem:
       type: object
       properties:
@@ -175,55 +202,6 @@ components:
         currency:
           type: string
           example: USD
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-        data: {}
-        meta:
-          type: object
-          properties:
-            patch_version:
-              type: integer
-    OrderLineItemProject:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    CreateOrderLineItemRequest:
-      type: object
-      required:
-      - project_id
-      properties:
-        project_id:
-          type: string
-        vintage_year:
-          type: integer
-        vintage_start_year:
-          type: integer
-        vintage_end_year:
-          type: integer
-        price:
-          type: integer
-        currency:
-          type: string
-          example: USD
-        amount:
-          type: integer
-        unit:
-          type: string
-          example: g
     UpdateOrderLineItemRequest:
       type: object
       properties:
@@ -243,71 +221,28 @@ components:
         unit:
           type: string
           example: g
-    OrderLineItemResponse_2:
+    Meta:
       type: object
-      description: API response wrapping an OrderLineItem
+      description: Pagination and response metadata block returned on list endpoints.
       properties:
-        success:
-          type: boolean
-          description: Whether the request was successful
-        error:
+        prev_page:
           type:
-          - string
+          - integer
           - 'null'
-          description: Error message if the request failed
-        data:
-          $ref: '#/components/schemas/OrderLineItem_2'
-    OrderLineItem_2:
+        next_page:
+          type:
+          - integer
+          - 'null'
+    OrderLineItemResponse:
       type: object
-      description: An individual line item within an order
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the line item
-        project:
-          $ref: '#/components/schemas/OrderLineItemProject_2'
-        vintage_year:
-          type: integer
-          description: Specific vintage year for the carbon credits
-        vintage_start_year:
-          type: integer
-          description: Start year of the vintage range
-        vintage_end_year:
-          type: integer
-          description: End year of the vintage range
-        amount:
-          type: integer
-          description: Amount of carbon offset in grams of CO2 equivalent
-        unit:
-          type: string
-          description: Unit of measurement
-        price:
-          type: integer
-          description: Price in the smallest currency unit
-        currency:
-          type: string
-          description: ISO 4217 currency code
-    ErrorResponse_2:
-      type: object
-      description: API error response
       properties:
         success:
           type: boolean
-          example: false
-          description: Always false for error responses
-        error:
-          type: string
-          description: Error message describing what went wrong
-    OrderLineItemProject_2:
-      type: object
-      description: Project reference within an order line item
-      properties:
-        id:
-          type: string
-          description: Project identifier
-        name:
-          type: string
-          description: Project name
+        error: {}
+        data:
+          $ref: '#/components/schemas/OrderLineItem'
+        meta:
+          $ref: '#/components/schemas/Meta'
     DeleteOrderLineItemResponse:
       type: object
       description: API response confirming order line item deletion
@@ -326,6 +261,17 @@ components:
             id:
               type: string
               description: ID of the deleted line item
+    ErrorResponse_2:
+      type: object
+      description: API error response
+      properties:
+        success:
+          type: boolean
+          example: false
+          description: Always false for error responses
+        error:
+          type: string
+          description: Error message describing what went wrong
     CreateOrderLineItemRequest_2:
       type: object
       description: Request body for creating an order line item
@@ -356,6 +302,46 @@ components:
         unit:
           type: string
           description: Unit of measurement
+    OrderLineItemProject_2:
+      type: object
+      description: Project reference within an order line item
+      properties:
+        id:
+          type: string
+          description: Project identifier
+        name:
+          type: string
+          description: Project name
+    OrderLineItem_2:
+      type: object
+      description: An individual line item within an order
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        project:
+          $ref: '#/components/schemas/OrderLineItemProject_2'
+        vintage_year:
+          type: integer
+          description: Specific vintage year for the carbon credits
+        vintage_start_year:
+          type: integer
+          description: Start year of the vintage range
+        vintage_end_year:
+          type: integer
+          description: End year of the vintage range
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement
+        price:
+          type: integer
+          description: Price in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code
     UpdateOrderLineItemRequest_2:
       type: object
       description: Request body for updating an order line item
@@ -381,6 +367,20 @@ components:
         unit:
           type: string
           description: Unit of measurement
+    OrderLineItemResponse_2:
+      type: object
+      description: API response wrapping an OrderLineItem
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type:
+          - string
+          - 'null'
+          description: Error message if the request failed
+        data:
+          $ref: '#/components/schemas/OrderLineItem_2'
   responses:
     BadRequest:
       description: Request was malformed or failed validation.
@@ -388,14 +388,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: API key missing, malformed, or invalid.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: API key missing, malformed, or invalid.
       content:
         application/json:
           schema:

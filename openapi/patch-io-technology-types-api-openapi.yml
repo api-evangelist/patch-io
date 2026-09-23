@@ -35,18 +35,13 @@ paths:
       description: Production API
 components:
   schemas:
-    Meta:
+    ParentTechnologyType:
       type: object
-      description: Pagination and response metadata block returned on list endpoints.
       properties:
-        prev_page:
-          type:
-          - integer
-          - 'null'
-        next_page:
-          type:
-          - integer
-          - 'null'
+        slug:
+          type: string
+        name:
+          type: string
     ErrorResponse:
       type: object
       properties:
@@ -77,13 +72,6 @@ components:
           example: Direct Air Capture
         parent_technology_type:
           $ref: '#/components/schemas/ParentTechnologyType'
-    ParentTechnologyType:
-      type: object
-      properties:
-        slug:
-          type: string
-        name:
-          type: string
     TechnologyTypeListResponse:
       type: object
       properties:
@@ -96,6 +84,18 @@ components:
             $ref: '#/components/schemas/TechnologyType'
         meta:
           $ref: '#/components/schemas/Meta'
+    Meta:
+      type: object
+      description: Pagination and response metadata block returned on list endpoints.
+      properties:
+        prev_page:
+          type:
+          - integer
+          - 'null'
+        next_page:
+          type:
+          - integer
+          - 'null'
     MetaIndexObject:
       type: object
       description: Pagination metadata
@@ -111,6 +111,16 @@ components:
         current_page:
           type: integer
           description: The current page number
+    ParentTechnologyType_2:
+      type: object
+      description: Parent category for a technology type
+      properties:
+        slug:
+          type: string
+          description: URL-friendly slug identifier
+        name:
+          type: string
+          description: Human-readable name of the parent technology type
     ErrorResponse_2:
       type: object
       description: API error response
@@ -134,16 +144,6 @@ components:
           description: Human-readable name of the technology type
         parent_technology_type:
           $ref: '#/components/schemas/ParentTechnologyType_2'
-    ParentTechnologyType_2:
-      type: object
-      description: Parent category for a technology type
-      properties:
-        slug:
-          type: string
-          description: URL-friendly slug identifier
-        name:
-          type: string
-          description: Human-readable name of the parent technology type
     TechnologyTypeListResponse_2:
       type: object
       description: API response wrapping a list of TechnologyTypes
