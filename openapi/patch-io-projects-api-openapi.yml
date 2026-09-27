@@ -81,13 +81,38 @@ paths:
       description: Production API
 components:
   schemas:
-    Highlight:
+    Meta:
+      type: object
+      description: Pagination and response metadata block returned on list endpoints.
+      properties:
+        prev_page:
+          type:
+          - integer
+          - 'null'
+        next_page:
+          type:
+          - integer
+          - 'null'
+    Standard:
+      type: object
+      description: Carbon registry / standard the project is certified under (Verra, Gold Standard, Puro, ACR, CAR, etc.).
+      properties:
+        type:
+          type: string
+        acronym:
+          type: string
+    ProjectListResponse:
       type: object
       properties:
-        headline:
-          type: string
-        details:
-          type: string
+        success:
+          type: boolean
+        error: {}
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        meta:
+          $ref: '#/components/schemas/Meta'
     ParentTechnologyType:
       type: object
       properties:
@@ -95,25 +120,6 @@ components:
           type: string
         name:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-        data: {}
-        meta:
-          type: object
-          properties:
-            patch_version:
-              type: integer
     TechnologyType:
       type: object
       properties:
@@ -125,14 +131,6 @@ components:
           example: Direct Air Capture
         parent_technology_type:
           $ref: '#/components/schemas/ParentTechnologyType'
-    Standard:
-      type: object
-      description: Carbon registry / standard the project is certified under (Verra, Gold Standard, Puro, ACR, CAR, etc.).
-      properties:
-        type:
-          type: string
-        acronym:
-          type: string
     Project:
       type: object
       description: A verified carbon project listed on Patch.
@@ -190,6 +188,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Disclaimer'
+    Disclaimer:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+    Photo:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
     Inventory:
       type: object
       description: Available inventory broken out by vintage and price.
@@ -215,45 +228,6 @@ components:
         currency:
           type: string
           example: USD
-    Photo:
-      type: object
-      properties:
-        id:
-          type: string
-        url:
-          type: string
-          format: uri
-    ProjectListResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error: {}
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    Disclaimer:
-      type: object
-      properties:
-        title:
-          type: string
-        body:
-          type: string
-    Meta:
-      type: object
-      description: Pagination and response metadata block returned on list endpoints.
-      properties:
-        prev_page:
-          type:
-          - integer
-          - 'null'
-        next_page:
-          type:
-          - integer
-          - 'null'
     ProjectResponse:
       type: object
       properties:
@@ -264,6 +238,32 @@ components:
           $ref: '#/components/schemas/Project'
         meta:
           $ref: '#/components/schemas/Meta'
+    Highlight:
+      type: object
+      properties:
+        headline:
+          type: string
+        details:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+        data: {}
+        meta:
+          type: object
+          properties:
+            patch_version:
+              type: integer
     Sdg:
       type: object
       description: UN Sustainable Development Goal alignment.
@@ -274,26 +274,17 @@ components:
           type: string
         description:
           type: string
-    Highlight_2:
+    Standard_2:
       type: object
-      description: A key highlight of a project
+      description: Carbon standard or certification
       properties:
-        title:
-          type: string
-          description: Title of the highlight
-        description:
-          type: string
-          description: Description of the highlight
-    ParentTechnologyType_2:
-      type: object
-      description: Parent category for a technology type
-      properties:
-        slug:
-          type: string
-          description: URL-friendly slug identifier
         name:
           type: string
-          description: Human-readable name of the parent technology type
+          description: Name of the standard (e.g., Gold Standard, VCS)
+        link:
+          type: string
+          format: uri
+          description: URL to the standard's website
     MetaIndexObject:
       type: object
       description: Pagination metadata
@@ -309,17 +300,34 @@ components:
         current_page:
           type: integer
           description: The current page number
-    ErrorResponse_2:
+    ProjectListResponse_2:
       type: object
-      description: API error response
+      description: API response wrapping a list of Projects
       properties:
         success:
           type: boolean
-          example: false
-          description: Always false for error responses
+          description: Whether the request was successful
         error:
+          type:
+          - string
+          - 'null'
+          description: Error message if the request failed
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project_2'
+        meta:
+          $ref: '#/components/schemas/MetaIndexObject'
+    ParentTechnologyType_2:
+      type: object
+      description: Parent category for a technology type
+      properties:
+        slug:
           type: string
-          description: Error message describing what went wrong
+          description: URL-friendly slug identifier
+        name:
+          type: string
+          description: Human-readable name of the parent technology type
     TechnologyType_2:
       type: object
       description: A carbon removal technology type
@@ -332,17 +340,6 @@ components:
           description: Human-readable name of the technology type
         parent_technology_type:
           $ref: '#/components/schemas/ParentTechnologyType_2'
-    Standard_2:
-      type: object
-      description: Carbon standard or certification
-      properties:
-        name:
-          type: string
-          description: Name of the standard (e.g., Gold Standard, VCS)
-        link:
-          type: string
-          format: uri
-          description: URL to the standard's website
     Project_2:
       type: object
       description: A carbon removal project available on the Patch platform
@@ -414,6 +411,21 @@ components:
           items:
             $ref: '#/components/schemas/Disclaimer_2'
           description: Legal disclaimers for the project
+    Disclaimer_2:
+      type: object
+      description: A legal disclaimer for a project
+      properties:
+        content:
+          type: string
+          description: Text of the disclaimer
+    Photo_2:
+      type: object
+      description: A photo associated with a project
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the photo
     Inventory_2:
       type: object
       description: Inventory information for a project
@@ -424,39 +436,6 @@ components:
         unit:
           type: string
           description: Unit of measurement
-    Photo_2:
-      type: object
-      description: A photo associated with a project
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the photo
-    ProjectListResponse_2:
-      type: object
-      description: API response wrapping a list of Projects
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful
-        error:
-          type:
-          - string
-          - 'null'
-          description: Error message if the request failed
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project_2'
-        meta:
-          $ref: '#/components/schemas/MetaIndexObject'
-    Disclaimer_2:
-      type: object
-      description: A legal disclaimer for a project
-      properties:
-        content:
-          type: string
-          description: Text of the disclaimer
     ProjectResponse_2:
       type: object
       description: API response wrapping a Project
@@ -471,6 +450,27 @@ components:
           description: Error message if the request failed
         data:
           $ref: '#/components/schemas/Project_2'
+    Highlight_2:
+      type: object
+      description: A key highlight of a project
+      properties:
+        title:
+          type: string
+          description: Title of the highlight
+        description:
+          type: string
+          description: Description of the highlight
+    ErrorResponse_2:
+      type: object
+      description: API error response
+      properties:
+        success:
+          type: boolean
+          example: false
+          description: Always false for error responses
+        error:
+          type: string
+          description: Error message describing what went wrong
     Sdg_2:
       type: object
       description: UN Sustainable Development Goal

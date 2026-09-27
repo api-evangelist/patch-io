@@ -35,6 +35,18 @@ paths:
       description: Production API
 components:
   schemas:
+    Meta:
+      type: object
+      description: Pagination and response metadata block returned on list endpoints.
+      properties:
+        prev_page:
+          type:
+          - integer
+          - 'null'
+        next_page:
+          type:
+          - integer
+          - 'null'
     ParentTechnologyType:
       type: object
       properties:
@@ -42,25 +54,6 @@ components:
           type: string
         name:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-        data: {}
-        meta:
-          type: object
-          properties:
-            patch_version:
-              type: integer
     TechnologyType:
       type: object
       properties:
@@ -84,18 +77,25 @@ components:
             $ref: '#/components/schemas/TechnologyType'
         meta:
           $ref: '#/components/schemas/Meta'
-    Meta:
+    ErrorResponse:
       type: object
-      description: Pagination and response metadata block returned on list endpoints.
       properties:
-        prev_page:
-          type:
-          - integer
-          - 'null'
-        next_page:
-          type:
-          - integer
-          - 'null'
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+        data: {}
+        meta:
+          type: object
+          properties:
+            patch_version:
+              type: integer
     MetaIndexObject:
       type: object
       description: Pagination metadata
@@ -121,17 +121,6 @@ components:
         name:
           type: string
           description: Human-readable name of the parent technology type
-    ErrorResponse_2:
-      type: object
-      description: API error response
-      properties:
-        success:
-          type: boolean
-          example: false
-          description: Always false for error responses
-        error:
-          type: string
-          description: Error message describing what went wrong
     TechnologyType_2:
       type: object
       description: A carbon removal technology type
@@ -162,6 +151,17 @@ components:
             $ref: '#/components/schemas/TechnologyType_2'
         meta:
           $ref: '#/components/schemas/MetaIndexObject'
+    ErrorResponse_2:
+      type: object
+      description: API error response
+      properties:
+        success:
+          type: boolean
+          example: false
+          description: Always false for error responses
+        error:
+          type: string
+          description: Error message describing what went wrong
   responses:
     Unauthorized:
       description: API key missing, malformed, or invalid.
