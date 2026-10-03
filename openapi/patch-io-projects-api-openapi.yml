@@ -80,27 +80,58 @@ paths:
     - url: https://api.patch.io
       description: Production API
 components:
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: 1-indexed page number for paginated responses.
+  responses:
+    Unauthorized:
+      description: API key missing, malformed, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Meta:
+    ProjectResponse:
       type: object
-      description: Pagination and response metadata block returned on list endpoints.
       properties:
-        prev_page:
-          type:
-          - integer
-          - 'null'
-        next_page:
-          type:
-          - integer
-          - 'null'
-    Standard:
+        success:
+          type: boolean
+        error: {}
+        data:
+          $ref: '#/components/schemas/Project'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ErrorResponse:
       type: object
-      description: Carbon registry / standard the project is certified under (Verra, Gold Standard, Puro, ACR, CAR, etc.).
       properties:
-        type:
-          type: string
-        acronym:
-          type: string
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+        data: {}
+        meta:
+          type: object
+          properties:
+            patch_version:
+              type: integer
     ProjectListResponse:
       type: object
       properties:
@@ -120,17 +151,83 @@ components:
           type: string
         name:
           type: string
-    TechnologyType:
+    Inventory:
+      type: object
+      description: Available inventory broken out by vintage and price.
+      properties:
+        vintage_year:
+          type:
+          - integer
+          - 'null'
+        vintage_start_year:
+          type:
+          - integer
+          - 'null'
+        vintage_end_year:
+          type:
+          - integer
+          - 'null'
+        amount_available:
+          type: integer
+          description: Available mass in grams.
+        price:
+          type: integer
+          description: Per-tonne price in minor currency units.
+        currency:
+          type: string
+          example: USD
+    Standard:
+      type: object
+      description: Carbon registry / standard the project is certified under (Verra, Gold Standard, Puro, ACR, CAR, etc.).
+      properties:
+        type:
+          type: string
+        acronym:
+          type: string
+    Sdg:
+      type: object
+      description: UN Sustainable Development Goal alignment.
+      properties:
+        number:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+    Highlight:
       type: object
       properties:
-        slug:
+        headline:
           type: string
-          example: dac
-        name:
+        details:
           type: string
-          example: Direct Air Capture
-        parent_technology_type:
-          $ref: '#/components/schemas/ParentTechnologyType'
+    Photo:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+    Meta:
+      type: object
+      description: Pagination and response metadata block returned on list endpoints.
+      properties:
+        prev_page:
+          type:
+          - integer
+          - 'null'
+        next_page:
+          type:
+          - integer
+          - 'null'
+    Disclaimer:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
     Project:
       type: object
       description: A verified carbon project listed on Patch.
@@ -188,118 +285,42 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Disclaimer'
-    Disclaimer:
+    TechnologyType:
       type: object
       properties:
-        title:
+        slug:
           type: string
-        body:
+          example: dac
+        name:
           type: string
-    Photo:
+          example: Direct Air Capture
+        parent_technology_type:
+          $ref: '#/components/schemas/ParentTechnologyType'
+    ProjectResponse_2:
       type: object
-      properties:
-        id:
-          type: string
-        url:
-          type: string
-          format: uri
-    Inventory:
-      type: object
-      description: Available inventory broken out by vintage and price.
-      properties:
-        vintage_year:
-          type:
-          - integer
-          - 'null'
-        vintage_start_year:
-          type:
-          - integer
-          - 'null'
-        vintage_end_year:
-          type:
-          - integer
-          - 'null'
-        amount_available:
-          type: integer
-          description: Available mass in grams.
-        price:
-          type: integer
-          description: Per-tonne price in minor currency units.
-        currency:
-          type: string
-          example: USD
-    ProjectResponse:
-      type: object
+      description: API response wrapping a Project
       properties:
         success:
           type: boolean
-        error: {}
+          description: Whether the request was successful
+        error:
+          type:
+          - string
+          - 'null'
+          description: Error message if the request failed
         data:
-          $ref: '#/components/schemas/Project'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    Highlight:
+          $ref: '#/components/schemas/Project_2'
+    ErrorResponse_2:
       type: object
-      properties:
-        headline:
-          type: string
-        details:
-          type: string
-    ErrorResponse:
-      type: object
+      description: API error response
       properties:
         success:
           type: boolean
           example: false
+          description: Always false for error responses
         error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-        data: {}
-        meta:
-          type: object
-          properties:
-            patch_version:
-              type: integer
-    Sdg:
-      type: object
-      description: UN Sustainable Development Goal alignment.
-      properties:
-        number:
-          type: integer
-        title:
           type: string
-        description:
-          type: string
-    Standard_2:
-      type: object
-      description: Carbon standard or certification
-      properties:
-        name:
-          type: string
-          description: Name of the standard (e.g., Gold Standard, VCS)
-        link:
-          type: string
-          format: uri
-          description: URL to the standard's website
-    MetaIndexObject:
-      type: object
-      description: Pagination metadata
-      properties:
-        has_more:
-          type: boolean
-          description: Whether there are more records to retrieve
-        next_page:
-          type:
-          - integer
-          - 'null'
-          description: The next page number, if available
-        current_page:
-          type: integer
-          description: The current page number
+          description: Error message describing what went wrong
     ProjectListResponse_2:
       type: object
       description: API response wrapping a list of Projects
@@ -328,18 +349,66 @@ components:
         name:
           type: string
           description: Human-readable name of the parent technology type
-    TechnologyType_2:
+    Inventory_2:
       type: object
-      description: A carbon removal technology type
+      description: Inventory information for a project
       properties:
-        slug:
+        amount_available:
+          type: integer
+          description: Amount of carbon credits available in grams
+        unit:
           type: string
-          description: URL-friendly slug identifier
+          description: Unit of measurement
+    Standard_2:
+      type: object
+      description: Carbon standard or certification
+      properties:
         name:
           type: string
-          description: Human-readable name of the technology type
-        parent_technology_type:
-          $ref: '#/components/schemas/ParentTechnologyType_2'
+          description: Name of the standard (e.g., Gold Standard, VCS)
+        link:
+          type: string
+          format: uri
+          description: URL to the standard's website
+    Sdg_2:
+      type: object
+      description: UN Sustainable Development Goal
+      properties:
+        number:
+          type: integer
+          description: SDG number (1-17)
+        title:
+          type: string
+          description: SDG title
+        link:
+          type: string
+          format: uri
+          description: URL to the SDG page
+    Highlight_2:
+      type: object
+      description: A key highlight of a project
+      properties:
+        title:
+          type: string
+          description: Title of the highlight
+        description:
+          type: string
+          description: Description of the highlight
+    Photo_2:
+      type: object
+      description: A photo associated with a project
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the photo
+    Disclaimer_2:
+      type: object
+      description: A legal disclaimer for a project
+      properties:
+        content:
+          type: string
+          description: Text of the disclaimer
     Project_2:
       type: object
       description: A carbon removal project available on the Patch platform
@@ -411,102 +480,33 @@ components:
           items:
             $ref: '#/components/schemas/Disclaimer_2'
           description: Legal disclaimers for the project
-    Disclaimer_2:
+    MetaIndexObject:
       type: object
-      description: A legal disclaimer for a project
+      description: Pagination metadata
       properties:
-        content:
-          type: string
-          description: Text of the disclaimer
-    Photo_2:
-      type: object
-      description: A photo associated with a project
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the photo
-    Inventory_2:
-      type: object
-      description: Inventory information for a project
-      properties:
-        amount_available:
-          type: integer
-          description: Amount of carbon credits available in grams
-        unit:
-          type: string
-          description: Unit of measurement
-    ProjectResponse_2:
-      type: object
-      description: API response wrapping a Project
-      properties:
-        success:
+        has_more:
           type: boolean
-          description: Whether the request was successful
-        error:
+          description: Whether there are more records to retrieve
+        next_page:
           type:
-          - string
+          - integer
           - 'null'
-          description: Error message if the request failed
-        data:
-          $ref: '#/components/schemas/Project_2'
-    Highlight_2:
-      type: object
-      description: A key highlight of a project
-      properties:
-        title:
-          type: string
-          description: Title of the highlight
-        description:
-          type: string
-          description: Description of the highlight
-    ErrorResponse_2:
-      type: object
-      description: API error response
-      properties:
-        success:
-          type: boolean
-          example: false
-          description: Always false for error responses
-        error:
-          type: string
-          description: Error message describing what went wrong
-    Sdg_2:
-      type: object
-      description: UN Sustainable Development Goal
-      properties:
-        number:
+          description: The next page number, if available
+        current_page:
           type: integer
-          description: SDG number (1-17)
-        title:
+          description: The current page number
+    TechnologyType_2:
+      type: object
+      description: A carbon removal technology type
+      properties:
+        slug:
           type: string
-          description: SDG title
-        link:
+          description: URL-friendly slug identifier
+        name:
           type: string
-          format: uri
-          description: URL to the SDG page
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: API key missing, malformed, or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    PageParam:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: 1-indexed page number for paginated responses.
+          description: Human-readable name of the technology type
+        parent_technology_type:
+          $ref: '#/components/schemas/ParentTechnologyType_2'
   securitySchemes:
     bearerAuth:
       type: http

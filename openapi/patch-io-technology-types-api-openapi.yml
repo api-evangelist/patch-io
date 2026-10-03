@@ -34,49 +34,14 @@ paths:
     - url: https://api.patch.io
       description: Production API
 components:
+  responses:
+    Unauthorized:
+      description: API key missing, malformed, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Meta:
-      type: object
-      description: Pagination and response metadata block returned on list endpoints.
-      properties:
-        prev_page:
-          type:
-          - integer
-          - 'null'
-        next_page:
-          type:
-          - integer
-          - 'null'
-    ParentTechnologyType:
-      type: object
-      properties:
-        slug:
-          type: string
-        name:
-          type: string
-    TechnologyType:
-      type: object
-      properties:
-        slug:
-          type: string
-          example: dac
-        name:
-          type: string
-          example: Direct Air Capture
-        parent_technology_type:
-          $ref: '#/components/schemas/ParentTechnologyType'
-    TechnologyTypeListResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error: {}
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TechnologyType'
-        meta:
-          $ref: '#/components/schemas/Meta'
     ErrorResponse:
       type: object
       properties:
@@ -96,43 +61,59 @@ components:
           properties:
             patch_version:
               type: integer
-    MetaIndexObject:
+    TechnologyTypeListResponse:
       type: object
-      description: Pagination metadata
       properties:
-        has_more:
+        success:
           type: boolean
-          description: Whether there are more records to retrieve
+        error: {}
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TechnologyType'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ParentTechnologyType:
+      type: object
+      properties:
+        slug:
+          type: string
+        name:
+          type: string
+    Meta:
+      type: object
+      description: Pagination and response metadata block returned on list endpoints.
+      properties:
+        prev_page:
+          type:
+          - integer
+          - 'null'
         next_page:
           type:
           - integer
           - 'null'
-          description: The next page number, if available
-        current_page:
-          type: integer
-          description: The current page number
-    ParentTechnologyType_2:
+    TechnologyType:
       type: object
-      description: Parent category for a technology type
       properties:
         slug:
           type: string
-          description: URL-friendly slug identifier
+          example: dac
         name:
           type: string
-          description: Human-readable name of the parent technology type
-    TechnologyType_2:
-      type: object
-      description: A carbon removal technology type
-      properties:
-        slug:
-          type: string
-          description: URL-friendly slug identifier
-        name:
-          type: string
-          description: Human-readable name of the technology type
+          example: Direct Air Capture
         parent_technology_type:
-          $ref: '#/components/schemas/ParentTechnologyType_2'
+          $ref: '#/components/schemas/ParentTechnologyType'
+    ErrorResponse_2:
+      type: object
+      description: API error response
+      properties:
+        success:
+          type: boolean
+          example: false
+          description: Always false for error responses
+        error:
+          type: string
+          description: Error message describing what went wrong
     TechnologyTypeListResponse_2:
       type: object
       description: API response wrapping a list of TechnologyTypes
@@ -151,24 +132,43 @@ components:
             $ref: '#/components/schemas/TechnologyType_2'
         meta:
           $ref: '#/components/schemas/MetaIndexObject'
-    ErrorResponse_2:
+    ParentTechnologyType_2:
       type: object
-      description: API error response
+      description: Parent category for a technology type
       properties:
-        success:
-          type: boolean
-          example: false
-          description: Always false for error responses
-        error:
+        slug:
           type: string
-          description: Error message describing what went wrong
-  responses:
-    Unauthorized:
-      description: API key missing, malformed, or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+          description: URL-friendly slug identifier
+        name:
+          type: string
+          description: Human-readable name of the parent technology type
+    MetaIndexObject:
+      type: object
+      description: Pagination metadata
+      properties:
+        has_more:
+          type: boolean
+          description: Whether there are more records to retrieve
+        next_page:
+          type:
+          - integer
+          - 'null'
+          description: The next page number, if available
+        current_page:
+          type: integer
+          description: The current page number
+    TechnologyType_2:
+      type: object
+      description: A carbon removal technology type
+      properties:
+        slug:
+          type: string
+          description: URL-friendly slug identifier
+        name:
+          type: string
+          description: Human-readable name of the technology type
+        parent_technology_type:
+          $ref: '#/components/schemas/ParentTechnologyType_2'
   securitySchemes:
     bearerAuth:
       type: http
