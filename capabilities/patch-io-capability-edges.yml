@@ -1,0 +1,45 @@
+slug: patch-io
+provider: Patch
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Projects
+  spec_file: patch-io-projects-api-openapi.yml
+  capability_id: BC-740.20
+  capability_id_l1: BC-740
+  capability_name: Climate & Carbon Management
+  confidence: 0.8
+  evidence: 'GET /v1/projects  retrieveProjects  List Projects; schemas: Standard, Sdg, Inventory, TechnologyType
+    — ''The core Patch API exposes carbon projects'''
+  reason: Catalogue of carbon removal/avoidance projects with standards and SDG attributes — carbon management
+    domain, not generic project management.
+- tag: Orders
+  spec_file: patch-io-orders-api-openapi.yml
+  capability_id: BC-740.20
+  capability_id_l1: BC-740
+  capability_name: Climate & Carbon Management
+  confidence: 0.75
+  evidence: POST /v1/orders  createOrder  Create An Order; PATCH /v1/orders/{id}/place  placeOrder — vendor
+    platform to 'procure carbon credits and removals'
+  reason: Orders are carbon credit purchase orders; the capability realised is carbon offset procurement/climate
+    action rather than generic sales ordering.
+- tag: Order Line Items
+  spec_file: patch-io-order-line-items-api-openapi.yml
+  capability_id: BC-740.20
+  capability_id_l1: BC-740
+  capability_name: Climate & Carbon Management
+  confidence: 0.7
+  evidence: 'POST /v1/orders/{order_id}/line_items  createOrderLineItem; schemas: OrderLineItemProject,
+    OrderLineItem — vendor ''helps companies procure carbon credits and removals'''
+  reason: Line items of carbon-credit purchase orders, each tied to a carbon project; supports carbon
+    offset procurement under Climate & Carbon Management.

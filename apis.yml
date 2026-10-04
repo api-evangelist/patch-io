@@ -281,6 +281,9 @@ apis:
   - type: FinOps
     url: https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml
 common:
+- type: CapabilityMap
+  url: capabilities/patch-io-capability-edges.yml
+  name: Patch Business Capability Map
 - type: AgenticAccess
   url: agentic-access/patch-io-agentic-access.yml
 - type: VulnerabilityDisclosure
