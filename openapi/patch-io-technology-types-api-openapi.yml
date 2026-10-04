@@ -42,25 +42,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-        data: {}
-        meta:
-          type: object
-          properties:
-            patch_version:
-              type: integer
     TechnologyTypeListResponse:
       type: object
       properties:
@@ -73,6 +54,17 @@ components:
             $ref: '#/components/schemas/TechnologyType'
         meta:
           $ref: '#/components/schemas/Meta'
+    TechnologyType:
+      type: object
+      properties:
+        slug:
+          type: string
+          example: dac
+        name:
+          type: string
+          example: Direct Air Capture
+        parent_technology_type:
+          $ref: '#/components/schemas/ParentTechnologyType'
     ParentTechnologyType:
       type: object
       properties:
@@ -92,28 +84,25 @@ components:
           type:
           - integer
           - 'null'
-    TechnologyType:
+    ErrorResponse:
       type: object
-      properties:
-        slug:
-          type: string
-          example: dac
-        name:
-          type: string
-          example: Direct Air Capture
-        parent_technology_type:
-          $ref: '#/components/schemas/ParentTechnologyType'
-    ErrorResponse_2:
-      type: object
-      description: API error response
       properties:
         success:
           type: boolean
           example: false
-          description: Always false for error responses
         error:
-          type: string
-          description: Error message describing what went wrong
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+        data: {}
+        meta:
+          type: object
+          properties:
+            patch_version:
+              type: integer
     TechnologyTypeListResponse_2:
       type: object
       description: API response wrapping a list of TechnologyTypes
@@ -132,6 +121,18 @@ components:
             $ref: '#/components/schemas/TechnologyType_2'
         meta:
           $ref: '#/components/schemas/MetaIndexObject'
+    TechnologyType_2:
+      type: object
+      description: A carbon removal technology type
+      properties:
+        slug:
+          type: string
+          description: URL-friendly slug identifier
+        name:
+          type: string
+          description: Human-readable name of the technology type
+        parent_technology_type:
+          $ref: '#/components/schemas/ParentTechnologyType_2'
     ParentTechnologyType_2:
       type: object
       description: Parent category for a technology type
@@ -157,18 +158,17 @@ components:
         current_page:
           type: integer
           description: The current page number
-    TechnologyType_2:
+    ErrorResponse_2:
       type: object
-      description: A carbon removal technology type
+      description: API error response
       properties:
-        slug:
+        success:
+          type: boolean
+          example: false
+          description: Always false for error responses
+        error:
           type: string
-          description: URL-friendly slug identifier
-        name:
-          type: string
-          description: Human-readable name of the technology type
-        parent_technology_type:
-          $ref: '#/components/schemas/ParentTechnologyType_2'
+          description: Error message describing what went wrong
   securitySchemes:
     bearerAuth:
       type: http

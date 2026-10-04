@@ -237,15 +237,6 @@ paths:
     - url: https://api.patch.io
       description: Production API
 components:
-  parameters:
-    PageParam:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: 1-indexed page number for paginated responses.
   responses:
     Unauthorized:
       description: API key missing, malformed, or invalid.
@@ -253,14 +244,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: Request was malformed or failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Request was malformed or failed validation.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -297,6 +288,27 @@ components:
           example: g
         issued_to:
           $ref: '#/components/schemas/OrderIssuedTo'
+    OrderIssuedTo:
+      type: object
+      description: End beneficiary that credits should be issued and attributed to.
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+    Meta:
+      type: object
+      description: Pagination and response metadata block returned on list endpoints.
+      properties:
+        prev_page:
+          type:
+          - integer
+          - 'null'
+        next_page:
+          type:
+          - integer
+          - 'null'
     ErrorResponse:
       type: object
       properties:
@@ -316,83 +328,6 @@ components:
           properties:
             patch_version:
               type: integer
-    OrderResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error: {}
-        data:
-          $ref: '#/components/schemas/Order'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    OrderLineItem:
-      type: object
-      properties:
-        id:
-          type: string
-        project:
-          $ref: '#/components/schemas/OrderLineItemProject'
-        vintage_year:
-          type:
-          - integer
-          - 'null'
-        vintage_start_year:
-          type:
-          - integer
-          - 'null'
-        vintage_end_year:
-          type:
-          - integer
-          - 'null'
-        amount:
-          type: integer
-          description: Mass in grams.
-        unit:
-          type: string
-          example: g
-        price:
-          type: integer
-        currency:
-          type: string
-          example: USD
-    OrderLineItemProject:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    OrderIssuedTo:
-      type: object
-      description: End beneficiary that credits should be issued and attributed to.
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-    DeleteOrderResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error: {}
-        data: {}
-        meta:
-          $ref: '#/components/schemas/Meta'
-    OrderListResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error: {}
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-        meta:
-          $ref: '#/components/schemas/Meta'
     Order:
       type: object
       properties:
@@ -439,26 +374,74 @@ components:
             $ref: '#/components/schemas/OrderLineItem'
         issued_to:
           $ref: '#/components/schemas/OrderIssuedTo'
-    Meta:
+    OrderResponse:
       type: object
-      description: Pagination and response metadata block returned on list endpoints.
       properties:
-        prev_page:
+        success:
+          type: boolean
+        error: {}
+        data:
+          $ref: '#/components/schemas/Order'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    OrderLineItemProject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    DeleteOrderResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error: {}
+        data: {}
+        meta:
+          $ref: '#/components/schemas/Meta'
+    OrderLineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        project:
+          $ref: '#/components/schemas/OrderLineItemProject'
+        vintage_year:
           type:
           - integer
           - 'null'
-        next_page:
+        vintage_start_year:
           type:
           - integer
           - 'null'
-    PlaceOrderRequest:
+        vintage_end_year:
+          type:
+          - integer
+          - 'null'
+        amount:
+          type: integer
+          description: Mass in grams.
+        unit:
+          type: string
+          example: g
+        price:
+          type: integer
+        currency:
+          type: string
+          example: USD
+    OrderListResponse:
       type: object
-      description: Optional request body for placing an order
       properties:
-        metadata:
-          type: object
-          additionalProperties: true
-          description: Additional metadata to attach when placing
+        success:
+          type: boolean
+        error: {}
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        meta:
+          $ref: '#/components/schemas/Meta'
     CreateOrderRequest_2:
       type: object
       description: Request body for creating a new order
@@ -500,71 +483,6 @@ components:
           description: Unit of measurement
         issued_to:
           $ref: '#/components/schemas/OrderIssuedTo_2'
-    ErrorResponse_2:
-      type: object
-      description: API error response
-      properties:
-        success:
-          type: boolean
-          example: false
-          description: Always false for error responses
-        error:
-          type: string
-          description: Error message describing what went wrong
-    OrderResponse_2:
-      type: object
-      description: API response wrapping an Order
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful
-        error:
-          type:
-          - string
-          - 'null'
-          description: Error message if the request failed
-        data:
-          $ref: '#/components/schemas/Order_2'
-    OrderLineItemProject_2:
-      type: object
-      description: Project reference within an order line item
-      properties:
-        id:
-          type: string
-          description: Project identifier
-        name:
-          type: string
-          description: Project name
-    OrderLineItem_2:
-      type: object
-      description: An individual line item within an order
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the line item
-        project:
-          $ref: '#/components/schemas/OrderLineItemProject_2'
-        vintage_year:
-          type: integer
-          description: Specific vintage year for the carbon credits
-        vintage_start_year:
-          type: integer
-          description: Start year of the vintage range
-        vintage_end_year:
-          type: integer
-          description: End year of the vintage range
-        amount:
-          type: integer
-          description: Amount of carbon offset in grams of CO2 equivalent
-        unit:
-          type: string
-          description: Unit of measurement
-        price:
-          type: integer
-          description: Price in the smallest currency unit
-        currency:
-          type: string
-          description: ISO 4217 currency code
     OrderIssuedTo_2:
       type: object
       description: Entity to whom the carbon credits are issued
@@ -576,42 +494,32 @@ components:
           type: string
           format: email
           description: Email address of the recipient
-    DeleteOrderResponse_2:
+    MetaIndexObject:
       type: object
-      description: API response confirming order deletion
+      description: Pagination metadata
+      properties:
+        has_more:
+          type: boolean
+          description: Whether there are more records to retrieve
+        next_page:
+          type:
+          - integer
+          - 'null'
+          description: The next page number, if available
+        current_page:
+          type: integer
+          description: The current page number
+    ErrorResponse_2:
+      type: object
+      description: API error response
       properties:
         success:
           type: boolean
-          description: Whether the deletion was successful
+          example: false
+          description: Always false for error responses
         error:
-          type:
-          - string
-          - 'null'
-          description: Error message if the deletion failed
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: ID of the deleted order
-    OrderListResponse_2:
-      type: object
-      description: API response wrapping a list of Orders
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful
-        error:
-          type:
-          - string
-          - 'null'
-          description: Error message if the request failed
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order_2'
-        meta:
-          $ref: '#/components/schemas/MetaIndexObject'
+          type: string
+          description: Error message describing what went wrong
     Order_2:
       type: object
       description: A carbon offset order
@@ -664,21 +572,113 @@ components:
           description: Individual line items within the order
         issued_to:
           $ref: '#/components/schemas/OrderIssuedTo_2'
-    MetaIndexObject:
+    OrderResponse_2:
       type: object
-      description: Pagination metadata
+      description: API response wrapping an Order
       properties:
-        has_more:
+        success:
           type: boolean
-          description: Whether there are more records to retrieve
-        next_page:
+          description: Whether the request was successful
+        error:
           type:
-          - integer
+          - string
           - 'null'
-          description: The next page number, if available
-        current_page:
+          description: Error message if the request failed
+        data:
+          $ref: '#/components/schemas/Order_2'
+    PlaceOrderRequest:
+      type: object
+      description: Optional request body for placing an order
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Additional metadata to attach when placing
+    OrderLineItemProject_2:
+      type: object
+      description: Project reference within an order line item
+      properties:
+        id:
+          type: string
+          description: Project identifier
+        name:
+          type: string
+          description: Project name
+    DeleteOrderResponse_2:
+      type: object
+      description: API response confirming order deletion
+      properties:
+        success:
+          type: boolean
+          description: Whether the deletion was successful
+        error:
+          type:
+          - string
+          - 'null'
+          description: Error message if the deletion failed
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the deleted order
+    OrderLineItem_2:
+      type: object
+      description: An individual line item within an order
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        project:
+          $ref: '#/components/schemas/OrderLineItemProject_2'
+        vintage_year:
           type: integer
-          description: The current page number
+          description: Specific vintage year for the carbon credits
+        vintage_start_year:
+          type: integer
+          description: Start year of the vintage range
+        vintage_end_year:
+          type: integer
+          description: End year of the vintage range
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement
+        price:
+          type: integer
+          description: Price in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code
+    OrderListResponse_2:
+      type: object
+      description: API response wrapping a list of Orders
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type:
+          - string
+          - 'null'
+          description: Error message if the request failed
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order_2'
+        meta:
+          $ref: '#/components/schemas/MetaIndexObject'
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: 1-indexed page number for paginated responses.
   securitySchemes:
     bearerAuth:
       type: http
