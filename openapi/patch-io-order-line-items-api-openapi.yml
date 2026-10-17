@@ -129,31 +129,38 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Request was malformed or failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Meta:
+    UpdateOrderLineItemRequest:
       type: object
-      description: Pagination and response metadata block returned on list endpoints.
       properties:
-        prev_page:
-          type:
-          - integer
-          - 'null'
-        next_page:
-          type:
-          - integer
-          - 'null'
+        vintage_year:
+          type: integer
+        vintage_start_year:
+          type: integer
+        vintage_end_year:
+          type: integer
+        price:
+          type: integer
+        currency:
+          type: string
+          example: USD
+        amount:
+          type: integer
+        unit:
+          type: string
+          example: g
     OrderLineItemResponse:
       type: object
       properties:
@@ -164,9 +171,43 @@ components:
           $ref: '#/components/schemas/OrderLineItem'
         meta:
           $ref: '#/components/schemas/Meta'
-    UpdateOrderLineItemRequest:
+    OrderLineItem:
       type: object
       properties:
+        id:
+          type: string
+        project:
+          $ref: '#/components/schemas/OrderLineItemProject'
+        vintage_year:
+          type:
+          - integer
+          - 'null'
+        vintage_start_year:
+          type:
+          - integer
+          - 'null'
+        vintage_end_year:
+          type:
+          - integer
+          - 'null'
+        amount:
+          type: integer
+          description: Mass in grams.
+        unit:
+          type: string
+          example: g
+        price:
+          type: integer
+        currency:
+          type: string
+          example: USD
+    CreateOrderLineItemRequest:
+      type: object
+      required:
+      - project_id
+      properties:
+        project_id:
+          type: string
         vintage_year:
           type: integer
         vintage_start_year:
@@ -202,29 +243,18 @@ components:
           properties:
             patch_version:
               type: integer
-    CreateOrderLineItemRequest:
+    Meta:
       type: object
-      required:
-      - project_id
+      description: Pagination and response metadata block returned on list endpoints.
       properties:
-        project_id:
-          type: string
-        vintage_year:
-          type: integer
-        vintage_start_year:
-          type: integer
-        vintage_end_year:
-          type: integer
-        price:
-          type: integer
-        currency:
-          type: string
-          example: USD
-        amount:
-          type: integer
-        unit:
-          type: string
-          example: g
+        prev_page:
+          type:
+          - integer
+          - 'null'
+        next_page:
+          type:
+          - integer
+          - 'null'
     OrderLineItemProject:
       type: object
       properties:
@@ -232,61 +262,6 @@ components:
           type: string
         name:
           type: string
-    OrderLineItem:
-      type: object
-      properties:
-        id:
-          type: string
-        project:
-          $ref: '#/components/schemas/OrderLineItemProject'
-        vintage_year:
-          type:
-          - integer
-          - 'null'
-        vintage_start_year:
-          type:
-          - integer
-          - 'null'
-        vintage_end_year:
-          type:
-          - integer
-          - 'null'
-        amount:
-          type: integer
-          description: Mass in grams.
-        unit:
-          type: string
-          example: g
-        price:
-          type: integer
-        currency:
-          type: string
-          example: USD
-    OrderLineItemResponse_2:
-      type: object
-      description: API response wrapping an OrderLineItem
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful
-        error:
-          type:
-          - string
-          - 'null'
-          description: Error message if the request failed
-        data:
-          $ref: '#/components/schemas/OrderLineItem_2'
-    ErrorResponse_2:
-      type: object
-      description: API error response
-      properties:
-        success:
-          type: boolean
-          example: false
-          description: Always false for error responses
-        error:
-          type: string
-          description: Error message describing what went wrong
     UpdateOrderLineItemRequest_2:
       type: object
       description: Request body for updating an order line item
@@ -312,6 +287,50 @@ components:
         unit:
           type: string
           description: Unit of measurement
+    OrderLineItem_2:
+      type: object
+      description: An individual line item within an order
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        project:
+          $ref: '#/components/schemas/OrderLineItemProject_2'
+        vintage_year:
+          type: integer
+          description: Specific vintage year for the carbon credits
+        vintage_start_year:
+          type: integer
+          description: Start year of the vintage range
+        vintage_end_year:
+          type: integer
+          description: End year of the vintage range
+        amount:
+          type: integer
+          description: Amount of carbon offset in grams of CO2 equivalent
+        unit:
+          type: string
+          description: Unit of measurement
+        price:
+          type: integer
+          description: Price in the smallest currency unit
+        currency:
+          type: string
+          description: ISO 4217 currency code
+    OrderLineItemResponse_2:
+      type: object
+      description: API response wrapping an OrderLineItem
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful
+        error:
+          type:
+          - string
+          - 'null'
+          description: Error message if the request failed
+        data:
+          $ref: '#/components/schemas/OrderLineItem_2'
     DeleteOrderLineItemResponse:
       type: object
       description: API response confirming order line item deletion
@@ -360,6 +379,17 @@ components:
         unit:
           type: string
           description: Unit of measurement
+    ErrorResponse_2:
+      type: object
+      description: API error response
+      properties:
+        success:
+          type: boolean
+          example: false
+          description: Always false for error responses
+        error:
+          type: string
+          description: Error message describing what went wrong
     OrderLineItemProject_2:
       type: object
       description: Project reference within an order line item
@@ -370,36 +400,6 @@ components:
         name:
           type: string
           description: Project name
-    OrderLineItem_2:
-      type: object
-      description: An individual line item within an order
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the line item
-        project:
-          $ref: '#/components/schemas/OrderLineItemProject_2'
-        vintage_year:
-          type: integer
-          description: Specific vintage year for the carbon credits
-        vintage_start_year:
-          type: integer
-          description: Start year of the vintage range
-        vintage_end_year:
-          type: integer
-          description: End year of the vintage range
-        amount:
-          type: integer
-          description: Amount of carbon offset in grams of CO2 equivalent
-        unit:
-          type: string
-          description: Unit of measurement
-        price:
-          type: integer
-          description: Price in the smallest currency unit
-        currency:
-          type: string
-          description: ISO 4217 currency code
   securitySchemes:
     bearerAuth:
       type: http
