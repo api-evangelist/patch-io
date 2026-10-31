@@ -1,4 +1,4 @@
-# Patch (patch-io)
+# Patch
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,107 +64,168 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Patch is an API-first climate platform that helps companies procure carbon
-credits and removals, run climate strategy programs, and embed climate action
-into their own products. The core Patch API exposes carbon projects,
-estimates, and orders so developers can build offset purchase flows directly
-into checkouts, accounting systems, and ESG products. Patch also runs Radius
-(network-based impact acceleration), Offtake (climate tech funding and
-long-term credit access), and an RFP tool for carbon credit procurement.
-Official SDKs are available for Node.js, Python, Ruby, and other languages, and
-the API is documented with an OpenAPI 3 spec and Swagger UI.
+Patch is an API-first climate platform that helps companies procure carbon credits and removals, run climate strategy programs, and embed climate action into their own products. The core Patch API exposes carbon projects, estimates, and orders so developers can build offset purchase flows directly into checkouts, accounting systems, and ESG products. Patch also runs Radius (network-based impact acceleration), Offtake (climate tech funding and long-term credit access), and an RFP tool for carbon credit procurement. Official SDKs are available for Node.js, Python, Ruby, and other languages, and the API is documented with an OpenAPI 3 spec and Swagger UI.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/patch-io/refs/heads/main/apis.yml)
+**Areas:** Climate · Carbon Credits · Carbon Removal · Offsets · API-First · Embedded Climate · Marketplace · Sustainability · OpenAPI · SDK
 
-## Scope
+## Patch on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Patch is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/patch-io/](https://apis.io/providers/patch-io/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Climate
-- Carbon Credits
-- Carbon Removal
-- Offsets
-- API-First
-- Embedded Climate
-- Marketplace
-- Sustainability
-- OpenAPI
-- SDKs
+- [Patch Order Line Items API](https://apis.io/apis/patch-io/patch-io-order-line-items-api/) — Manage individual line items inside a multi-line carbon credit order.
+- [Patch Orders API](https://apis.io/apis/patch-io/patch-io-orders-api/) — Place, retrieve, place, and cancel carbon credit and removal orders.
+- [Patch Projects API](https://apis.io/apis/patch-io/patch-io-projects-api/) — Browse and retrieve verified carbon projects across removal and avoidance categories.
+- [Patch Technology Types API](https://apis.io/apis/patch-io/patch-io-technology-types-api/) — List the technology and parent technology types backing Patch's carbon project taxonomy.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-24
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Patch Carbon API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Patch API lets developers browse carbon projects, generate emissions
-estimates, and place orders for verified carbon credits and removals. It
-is delivered as a REST/JSON API documented with OpenAPI 3, with official
-client libraries in multiple languages. The API is used by climate
-products, accounting platforms, and embedded climate flows to make carbon
-action programmable.
+- [Patch Io Agentic Access](https://apis.io/agentic-access/patch-io/patch-io-agentic-access/)
 
-- **Human URL:** [https://docs.patch.io/](https://docs.patch.io/)
-- **Base URL:** `https://api.patch.io/`
+#### JSON Schema (3)
 
-#### Tags
+The data models the API reads and writes.
 
-- Carbon API
-- Projects
-- Orders
-- Estimates
-- Carbon Credits
-- Removal
-- OpenAPI
-- REST
+- [Patch Order](https://apis.io/schemas/patch-io/patch-io-order/)
+- [Patch Project](https://apis.io/schemas/patch-io/patch-io-project/)
+- [Patch Technology Type](https://apis.io/schemas/patch-io/patch-io-technology-type/)
 
-#### Properties
+#### JSON Structure (2)
 
-- [Documentation](https://docs.patch.io/)
-- [Swagger U I](https://api.patch.io/api-docs/index.html)
-- [How It Works](https://www.patch.io/how-it-works)
-- [Climate Neutral](https://www.patch.io/climate-neutral)
-- [S D K Node](https://github.com/patch-technology/patch-node)
-- [S D K Python](https://github.com/patch-technology/patch-python)
-- [S D K Ruby](https://github.com/patch-technology/patch-ruby)
-- [GitHub Organization](https://github.com/patch-technology)
-- [Unit Partnership](https://www.unit.co/docs/partnerships/patch/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/patch-io/main/openapi/patch-io-carbon-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-schema/patch-io-technology-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-project-structure.json)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-structure/patch-io-order-structure.json)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/patch-io/main/json-ld/patch-io-context.jsonld)
-- [Spectral Ruleset](https://raw.githubusercontent.com/api-evangelist/patch-io/main/rules/patch-io-rules.yml)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/patch-io/main/vocabulary/patch-io-vocabulary.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/patch-io/main/plans/patch-io-plans-pricing.yml)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/patch-io/main/rate-limits/patch-io-rate-limits.yml)
-- [Fin Ops](https://raw.githubusercontent.com/api-evangelist/patch-io/main/finops/patch-io-finops.yml)
-- [Postman Collection](collections/patch-io-carbon-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/patch-io-carbon-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Patch Io Order Structure](https://apis.io/json-structure/patch-io/patch-io-order-structure/)
+- [Patch Io Project Structure](https://apis.io/json-structure/patch-io/patch-io-project-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Patch Io Context](https://apis.io/jsonld/patch-io/patch-io-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Patch Io Vocabulary](https://apis.io/vocabularies/patch-io/patch-io-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Patch Io Create Order Example](https://apis.io/examples/patch-io/patch-io-create-order-example/)
+- [Patch Io Place Order Example](https://apis.io/examples/patch-io/patch-io-place-order-example/)
+- [Patch Io Retrieve Projects Example](https://apis.io/examples/patch-io/patch-io-retrieve-projects-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Patch Carbon API](https://apis.io/collections/patch-io/open-patch-io-carbon-api/)
+- [Patch Carbon Order Line Items API](https://apis.io/collections/patch-io/open-patch-io-order-line-items-api/)
+- [Patch Carbon Order Line Items Orders API](https://apis.io/collections/patch-io/open-patch-io-orders-api/)
+- [Patch Carbon Order Line Items Projects API](https://apis.io/collections/patch-io/open-patch-io-projects-api/)
+- [Patch Carbon Order Line Items Technology Types API](https://apis.io/collections/patch-io/open-patch-io-technology-types-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Patch — jsonschema rules](https://apis.io/rules/patch-io/patch-io-jsonschema-spectral-rules/)
+- [Patch API Rules](https://apis.io/rules/patch-io/patch-io-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Patch Io Authentication](https://apis.io/security/patch-io/patch-io-authentication/)
+- [Patch Io Domain Security](https://apis.io/security/patch-io/patch-io-domain-security/)
+- [Patch Io Vulnerability Disclosure](https://apis.io/security/patch-io/patch-io-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Patch Io Plans Pricing](https://apis.io/plans/patch-io/patch-io-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Patch Io Rate Limits](https://apis.io/rate-limits/patch-io/patch-io-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Patch Io Finops](https://apis.io/finops/patch-io/patch-io-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.patch.io/)
-- [Platform](https://www.patch.io/platform)
-- [How It Works](https://www.patch.io/how-it-works)
 - [Documentation](https://docs.patch.io/)
-- [Swagger U I](https://api.patch.io/api-docs/index.html)
-- [Git Hub](https://github.com/patch-technology)
+- [Pricing](https://www.patch.io/how-it-works)
 - [Blog](https://www.patch.io/blog)
-- [Climate Neutral](https://www.patch.io/climate-neutral)
-- [Careers](https://www.patch.io/careers)
-- [LinkedIn](https://www.linkedin.com/company/patch-technology/)
+- [Status](https://status.patch.io)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 63.2 |
+| Contract governance | 27.3 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 15.8 |
+
+**Agent readiness 27.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/patch-io/](https://apis.io/providers/patch-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Patch: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/patch-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
